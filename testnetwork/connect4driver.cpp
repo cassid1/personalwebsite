@@ -16,7 +16,7 @@ int totalDiagWins = 0;
 int totalHorizWins = 0;
 int totalChoices = 0;
 int totalMoves = 0;
-    /*
+    
     srand(time(NULL));
     const vector<int> dimensions = {7*6*3,75,40, 7};
     GameBoard a;
@@ -25,7 +25,7 @@ int totalMoves = 0;
 
     bool playHuman = false;
     bool compGoesFirst = false;
-    
+    /*
     string gameType;
     cout<<"do you want the computer to train itself, or do you want to play against it?\n enter either cpu or human:";
     cin>>gameType;
@@ -53,7 +53,7 @@ int totalMoves = 0;
         }
         a.playUserGame(compGoesFirst);
     }
-    
+    */
     if(!playHuman){
         int Games = 10;
         //cout<<"how many games should it train on?\n enter an integer:";
@@ -82,6 +82,5 @@ int totalMoves = 0;
     cout<<"Total Selections: "<<totalChoices<<endl;
     cout<<"Total Moves: "<<totalMoves<<endl; 
     }
-*/
 
 }
