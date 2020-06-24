@@ -81,7 +81,7 @@ int totalMoves = 0;
     cout<<"Diagonal Wins: "<<totalDiagWins<<"\n"<<endl;
     cout<<"Total Selections: "<<totalChoices<<endl;
     cout<<"Total Moves: "<<totalMoves<<endl; 
-    */
     }
+*/
 
 }
