@@ -1294,16 +1294,6 @@
       };
     </script>
     <script async type="text/javascript" src="NetDriver.js"></script>
-    <script src="wasm-arrays.min.js"></script>
-    <script>
-      "use strict"
-  
-      window.addEventListener("wasmLoaded", () => {
-        const res = ccallArrays("doubleValues", "array", ["array"], [[1,2,3,4,5]], {heapIn: "HEAP8", heapOut: "HEAP8", returnArraySize: 5})
-        console.log(res) // [2,4,6,8,10]
-      })
-  
-      </script>
   </body>
 </html>
 

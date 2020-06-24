@@ -1289,11 +1289,11 @@ function updateGlobalBufferAndViews(buf) {
 }
 
 var STATIC_BASE = 1024,
-    STACK_BASE = 5264432,
+    STACK_BASE = 5264416,
     STACKTOP = STACK_BASE,
-    STACK_MAX = 21552,
-    DYNAMIC_BASE = 5264432,
-    DYNAMICTOP_PTR = 21392;
+    STACK_MAX = 21536,
+    DYNAMIC_BASE = 5264416,
+    DYNAMICTOP_PTR = 21376;
 
 assert(STACK_BASE % 16 === 0, 'stack must start aligned');
 assert(DYNAMIC_BASE % 16 === 0, 'heap must start aligned');
@@ -1854,7 +1854,7 @@ var ASM_CONSTS = {
 
 
 
-// STATICTOP = STATIC_BASE + 20528;
+// STATICTOP = STATIC_BASE + 20512;
 /* global initializers */  __ATINIT__.push({ func: function() { ___wasm_call_ctors() } });
 
 
@@ -4373,7 +4373,7 @@ var ASM_CONSTS = {
     }
 
   function _emscripten_get_sbrk_ptr() {
-      return 21392;
+      return 21376;
     }
 
   function _emscripten_memcpy_big(dest, src, num) {
@@ -4950,7 +4950,7 @@ var asm = createWasm();
 var ___wasm_call_ctors = Module["___wasm_call_ctors"] = createExportWrapper("__wasm_call_ctors");
 
 /** @type {function(...*):?} */
-var __Z12doubleValuesPai = Module["__Z12doubleValuesPai"] = createExportWrapper("_Z12doubleValuesPai");
+var __Z7addNumsPfi = Module["__Z7addNumsPfi"] = createExportWrapper("_Z7addNumsPfi");
 
 /** @type {function(...*):?} */
 var _fflush = Module["_fflush"] = createExportWrapper("fflush");
