@@ -191,7 +191,7 @@ var Module = typeof Module !== 'undefined' ? Module : {};
     }
   
    }
-   loadPackage({"remote_package_size": 17076, "files": [{"filename": "/connect4red.net", "end": 8536, "start": 0, "audio": 0}, {"filename": "/connect4black.net", "end": 17076, "start": 8536, "audio": 0}], "package_uuid": "5b88354f-3107-4c96-8982-2948e55cea8d"});
+   loadPackage({"remote_package_size": 17076, "package_uuid": "4bb22061-269c-4a73-ae57-f149807be31b", "files": [{"end": 8536, "start": 0, "audio": 0, "filename": "/connect4red.net"}, {"end": 17076, "start": 8536, "audio": 0, "filename": "/connect4black.net"}]});
   
   })();
   
@@ -854,8 +854,8 @@ var wasmMemory;
 // In the wasm backend, we polyfill the WebAssembly object,
 // so this creates a (non-native-wasm) table for us.
 var wasmTable = new WebAssembly.Table({
-  'initial': 380,
-  'maximum': 380 + 0,
+  'initial': 385,
+  'maximum': 385 + 0,
   'element': 'anyfunc'
 });
 
@@ -1474,11 +1474,11 @@ function updateGlobalBufferAndViews(buf) {
 }
 
 var STATIC_BASE = 1024,
-    STACK_BASE = 5264992,
+    STACK_BASE = 5265152,
     STACKTOP = STACK_BASE,
-    STACK_MAX = 22112,
-    DYNAMIC_BASE = 5264992,
-    DYNAMICTOP_PTR = 21952;
+    STACK_MAX = 22272,
+    DYNAMIC_BASE = 5265152,
+    DYNAMICTOP_PTR = 22112;
 
 assert(STACK_BASE % 16 === 0, 'stack must start aligned');
 assert(DYNAMIC_BASE % 16 === 0, 'heap must start aligned');
@@ -2039,7 +2039,7 @@ var ASM_CONSTS = {
 
 
 
-// STATICTOP = STATIC_BASE + 21088;
+// STATICTOP = STATIC_BASE + 21248;
 /* global initializers */  __ATINIT__.push({ func: function() { ___wasm_call_ctors() } });
 
 
@@ -4682,7 +4682,7 @@ var ASM_CONSTS = {
     }
 
   function _emscripten_get_sbrk_ptr() {
-      return 21952;
+      return 22112;
     }
 
   function _emscripten_memcpy_big(dest, src, num) {
