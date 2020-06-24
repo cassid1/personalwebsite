@@ -191,7 +191,7 @@ var Module = typeof Module !== 'undefined' ? Module : {};
     }
   
    }
-   loadPackage({"files": [{"start": 0, "end": 8534, "filename": "/connect4red.net", "audio": 0}, {"start": 8534, "end": 17071, "filename": "/connect4black.net", "audio": 0}], "package_uuid": "1f7cecab-a9ee-40c3-8784-79bbc338202d", "remote_package_size": 17071});
+   loadPackage({"files": [{"start": 0, "audio": 0, "filename": "/connect4red.net", "end": 8534}, {"start": 8534, "audio": 0, "filename": "/connect4black.net", "end": 17071}], "package_uuid": "61833d52-673c-4c9c-a822-031679242af3", "remote_package_size": 17071});
   
   })();
   
@@ -1474,11 +1474,11 @@ function updateGlobalBufferAndViews(buf) {
 }
 
 var STATIC_BASE = 1024,
-    STACK_BASE = 5264960,
+    STACK_BASE = 5264976,
     STACKTOP = STACK_BASE,
-    STACK_MAX = 22080,
-    DYNAMIC_BASE = 5264960,
-    DYNAMICTOP_PTR = 21920;
+    STACK_MAX = 22096,
+    DYNAMIC_BASE = 5264976,
+    DYNAMICTOP_PTR = 21936;
 
 assert(STACK_BASE % 16 === 0, 'stack must start aligned');
 assert(DYNAMIC_BASE % 16 === 0, 'heap must start aligned');
@@ -2039,7 +2039,7 @@ var ASM_CONSTS = {
 
 
 
-// STATICTOP = STATIC_BASE + 21056;
+// STATICTOP = STATIC_BASE + 21072;
 /* global initializers */  __ATINIT__.push({ func: function() { ___wasm_call_ctors() } });
 
 
@@ -4682,7 +4682,7 @@ var ASM_CONSTS = {
     }
 
   function _emscripten_get_sbrk_ptr() {
-      return 21920;
+      return 21936;
     }
 
   function _emscripten_memcpy_big(dest, src, num) {
