@@ -1331,11 +1331,11 @@ function updateGlobalBufferAndViews(buf) {
 }
 
 var STATIC_BASE = 1024,
-    STACK_BASE = 5265200,
+    STACK_BASE = 5265312,
     STACKTOP = STACK_BASE,
-    STACK_MAX = 22320,
-    DYNAMIC_BASE = 5265200,
-    DYNAMICTOP_PTR = 22160;
+    STACK_MAX = 22432,
+    DYNAMIC_BASE = 5265312,
+    DYNAMICTOP_PTR = 22272;
 
 assert(STACK_BASE % 16 === 0, 'stack must start aligned');
 assert(DYNAMIC_BASE % 16 === 0, 'heap must start aligned');
@@ -1892,7 +1892,9 @@ var tempI64;
 var ASM_CONSTS = {
   1024: function($0) {console.log('I received: ' + $0);},  
  1062: function($0) {console.log('I received: ' + $0); return $0 + 1;},  
- 1276: function($0) {console.log('I received: ' + $0);return $0 + 1;}
+ 1276: function($0) {console.log('I received: ' + $0);return getHasPlayerChosen();},  
+ 1340: function($0) {console.log('I receivedddddd: ' + $0);return getPlayerSelection();},  
+ 1409: function($0) {setHasPlayerChosen($0);}
 };
 
 function _emscripten_asm_const_iii(code, sigPtr, argbuf) {
@@ -1902,7 +1904,7 @@ function _emscripten_asm_const_iii(code, sigPtr, argbuf) {
 
 
 
-// STATICTOP = STATIC_BASE + 21296;
+// STATICTOP = STATIC_BASE + 21408;
 /* global initializers */  __ATINIT__.push({ func: function() { ___wasm_call_ctors() } });
 
 
@@ -4545,7 +4547,7 @@ function _emscripten_asm_const_iii(code, sigPtr, argbuf) {
     }
 
   function _emscripten_get_sbrk_ptr() {
-      return 22160;
+      return 22272;
     }
 
   function _emscripten_memcpy_big(dest, src, num) {
