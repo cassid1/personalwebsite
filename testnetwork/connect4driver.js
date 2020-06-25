@@ -191,7 +191,7 @@ var Module = typeof Module !== 'undefined' ? Module : {};
     }
   
    }
-   loadPackage({"remote_package_size": 17076, "package_uuid": "4bb22061-269c-4a73-ae57-f149807be31b", "files": [{"end": 8536, "start": 0, "audio": 0, "filename": "/connect4red.net"}, {"end": 17076, "start": 8536, "audio": 0, "filename": "/connect4black.net"}]});
+   loadPackage({"package_uuid": "6cbd3ba1-73cc-498c-8f16-6038cc03fac6", "files": [{"filename": "/connect4red.net", "start": 0, "audio": 0, "end": 8536}, {"filename": "/connect4black.net", "start": 8536, "audio": 0, "end": 17076}], "remote_package_size": 17076});
   
   })();
   
