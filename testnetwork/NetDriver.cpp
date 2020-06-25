@@ -1,7 +1,7 @@
 #include "Neural_net.h"
-#include "Neural_net.cpp"
-#include "net_fun.h"
-#include "net_fun.cpp"
+//#include "Neural_net.cpp"
+//#include "net_fun.h"
+//#include "net_fun.cpp"
 
 #include <emscripten/emscripten.h>
 
@@ -16,6 +16,7 @@ float addNums (float *buffer, int bufSize) {
 
     return total;
 }
+
 int main()
 {
     int myArray [5] = {6, 7, 10, 12, 144};

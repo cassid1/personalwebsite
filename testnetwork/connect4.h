@@ -1,7 +1,7 @@
 #ifndef _CONNECT_4_
 #define _CONNECT_4_
 
-//#include "Neural_net.h"
+#include "Neural_net.h"
 using namespace std;
 
 class GameBoard{
