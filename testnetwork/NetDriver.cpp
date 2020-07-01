@@ -8,7 +8,7 @@
 //TODO:
 EMSCRIPTEN_KEEPALIVE
 int8_t* doubleValues (int8_t *buf, int bufSize) {
-
+    cout << "Insinde the funciton!";
     int8_t values[bufSize];
 
     for (int i=0; i<bufSize; i++) {
@@ -25,7 +25,6 @@ int main()
     //const vector<int> dimentions = {33 * 3, 3, 2};
     const vector<int> dimentions = {3, 3, 2};
     int firstLayer = dimentions[0];
-
     //srand(time(NULL));
 
     Network a(dimentions, false, true);
@@ -35,7 +34,6 @@ int main()
     a.printActivations();
     a.evaluate();
     a.printActivations();
-
     /**
     vector<float> v = {1, 0};
     cout << "first cost: " << a.cost(v) << endl;

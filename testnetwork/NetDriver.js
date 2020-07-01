@@ -5403,7 +5403,6 @@ if (Module['noInitialRun']) shouldRunNow = false;
 
 
   noExitRuntime = true;
-
 run();
 
 
