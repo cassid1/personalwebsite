@@ -1,4 +1,7 @@
 #include "Neural_net.h"
+#include "Neural_net.cpp"
+#include "net_fun.h"
+#include "net_fun.cpp"
 
 //TODO:
 int main()
