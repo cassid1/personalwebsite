@@ -3,9 +3,25 @@
 #include "net_fun.h"
 #include "net_fun.cpp"
 
+#include <emscripten/emscripten.h>
+
 //TODO:
+EMSCRIPTEN_KEEPALIVE
+int8_t* doubleValues (int8_t *buf, int bufSize) {
+
+    int8_t values[bufSize];
+
+    for (int i=0; i<bufSize; i++) {
+        values[i] = buf[i] * 2;
+    }
+
+    auto arrayPtr = &values[0];
+    return arrayPtr;
+}
+
 int main()
 {
+    int myArray [5] = {6, 7, 10, 12, 144};
     //const vector<int> dimentions = {33 * 3, 3, 2};
     const vector<int> dimentions = {3, 3, 2};
     int firstLayer = dimentions[0];
