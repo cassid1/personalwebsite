@@ -5,6 +5,6 @@ int main(){
     int second = 3;
     int returnVal = 0;
     returnVal = addEliott(first, second);
-    printf(returnVal);
+    printf("%d \n",returnVal);
     printf("Hello World\n");
 }
