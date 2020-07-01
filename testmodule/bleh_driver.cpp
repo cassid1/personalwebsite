@@ -1,10 +1,10 @@
 #include "bleh.cpp"
 int main(){
-    printf("Hello World !!!!!!!\n");
+    cout <<"Hello World !!!!!!!";
     int first = 2;
-    int second = 3;
+    int second = 7;
     int returnVal = 0;
     returnVal = addEliott(first, second);
-    printf("%d \n",returnVal);
-    printf("Hello World\n");
+    cout << returnVal;
+    cout << "Hello World\n";
 }
