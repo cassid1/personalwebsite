@@ -100,7 +100,7 @@ for(int row = 5; row>= 0; row--)
     }
 
     void GameBoard::updateNetworks(){
-        const vector <int> dimensions = {7*6*3,75,40, 7};
+        const vector <int> dimensions = {7*6*3,7, 7};
     if(blackWon){
     numBlackWins++;
   } else if (blackWon == false){
