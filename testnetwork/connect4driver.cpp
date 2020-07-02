@@ -55,7 +55,7 @@ int totalMoves = 0;
     }
     */
     if(!playHuman){
-        int Games = 3;
+        int Games = 1;
         //cout<<"how many games should it train on?\n enter an integer:";
         //cin>>Games;
         for(int i = 0; i<  Games; i++){
