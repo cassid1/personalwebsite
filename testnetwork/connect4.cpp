@@ -1,5 +1,4 @@
 #include"connect4.h"
-#include"sd_fun.h"
 
 /*
 int currentBoardID[7];

@@ -1,7 +1,6 @@
 #ifndef _CONNECT_4_
 #define _CONNECT_4_
 
-#include "sd_fun.h"
 #include "Neural_net.h"
 using namespace std;
 
