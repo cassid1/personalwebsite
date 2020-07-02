@@ -7,18 +7,15 @@
 
 //TODO:
 EMSCRIPTEN_KEEPALIVE
-int8_t* doubleValues (int8_t *buf, int bufSize) {
-    cout << "Insinde the funciton!";
-    int8_t values[bufSize];
-
+float addNums (float *buffer, int bufSize) {
+    float total = 0;
+    cout << "we here!";
     for (int i=0; i<bufSize; i++) {
-        values[i] = buf[i] * 2;
+        total+= buffer[i];
     }
 
-    auto arrayPtr = &values[0];
-    return arrayPtr;
+    return total;
 }
-
 int main()
 {
     int myArray [5] = {6, 7, 10, 12, 144};
