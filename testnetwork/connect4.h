@@ -80,7 +80,7 @@ class GameBoard{
         moveNumber++;
         }
 	    displayCurrentGameBoard();
-        updateNetworks();
+        //updateNetworks();
     }
 
 void playUserGame(bool compGoesFirst){
