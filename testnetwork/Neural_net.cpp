@@ -230,7 +230,7 @@ Network::Network(vector<int> v, bool randomWeights, bool allones)
 }
 Network::Network(string name)
 {
-
+    cout << "Creating network from file: " << name <<endl;
     ifstream ifs(name.c_str());
 
     vector<int> v;
@@ -240,9 +240,11 @@ Network::Network(string name)
     {
         ifs >> b;
         v.push_back(b);
+        cout << "b: " << b <<endl;
     }
 
     layers = v.size();
+    cout << "This network has " << layers << endl;
     myNet = new Layer *[layers];
     myNet[0] = new Layer(v[0]);
     //make a rightful amount of layers
