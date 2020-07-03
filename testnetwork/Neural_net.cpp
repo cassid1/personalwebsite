@@ -236,6 +236,7 @@ Network::Network(string name)
     vector<int> v;
     int a, b;
     ifs >> a;
+    cout << "a: " << a <<endl;
     for (int i = 0; i < a; i++)
     {
         ifs >> b;
