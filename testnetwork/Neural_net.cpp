@@ -251,7 +251,9 @@ Network::Network(string name)
         v.push_back(7);
         a = 3;
     }
-
+    int checker;
+    ifs >>checker;
+    cout << "The checker is: "<<checker<<endl;
     layers = v.size();
     cout << "This network has " << layers << endl;
     myNet = new Layer *[layers];
