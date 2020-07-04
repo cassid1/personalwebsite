@@ -245,6 +245,7 @@ Network::Network(string name)
     }
     //for dealing with emscripten being ass for no reason
     if(a == 1){
+        v.pop_back();
         v.push_back(126);
         v.push_back(7);
         v.push_back(7);
