@@ -71,7 +71,9 @@ class GameBoard{
 
         //loads the two networks
         Network learner("connect4black.net");
+        learner.printActivations();
         Network learner2("connect4red.net");
+        learner2.printActivations();
 	//const vector<int> dimentions = {126,75,40,7};
 	//Network learner(dimentions, false, true);
 	//Network learner2(dimentions, false, true);
@@ -91,9 +93,7 @@ void playUserGame(bool compGoesFirst){
 
         //loads the two networks
         Network learner("connect4black.net");
-        learner.printActivations();
         Network learner2("connect4red.net");
-        learner2.printActivations();
         learnerP = &(learner);
         learner2P = &(learner2);
 
