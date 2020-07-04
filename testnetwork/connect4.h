@@ -91,7 +91,9 @@ void playUserGame(bool compGoesFirst){
 
         //loads the two networks
         Network learner("connect4black.net");
+        learner.printActivations();
         Network learner2("connect4red.net");
+        learner2.printActivations();
         learnerP = &(learner);
         learner2P = &(learner2);
 
