@@ -324,7 +324,7 @@ void Network::toFile(string name)
         temporaryfile.open(name.c_str());
         buf = temporaryfile.rdbuf();
     }
-    ostream newfile(buf)
+    ostream newfile(buf);
     //first line, says how many layers
     newfile << layers << endl;
     //second line, says dimentions of the net in the oder that a constructor would take them.
