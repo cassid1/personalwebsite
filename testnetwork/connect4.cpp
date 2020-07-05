@@ -1,4 +1,4 @@
-//#include"connect4.h"
+#include"connect4.h"
 
 /*
 int currentBoardID[7];
@@ -286,7 +286,7 @@ float moveFloat = (float) moveNumber;
     //given the output vector from the neural network, find the index value of the choice that has the highest output value, provided that choice is of a column that is not filled up
     //choice is goint to represent a column number, so a value from 0 to 6
     int choice = -1;
-    float Maxvalue = -1000;
+    float Maxvalue = 0;
     int choices [7];
     int pos = 0;
     //creates vector choices that contains all outputs that are avaiavlle and have the highest value
@@ -296,8 +296,10 @@ float moveFloat = (float) moveNumber;
 //finds what the maximum value of outputs is
     for (int i = 0; i<7; i++){
         if(availableSelections[i]){
-          if (outputs[i]>Maxvalue)
+          if (outputs[i]>Maxvalue){
             Maxvalue = outputs[i];
+            //cout << "maxvalue is now: " << Maxvalue <<endl;
+          }
         }
     }
 
@@ -305,9 +307,10 @@ float moveFloat = (float) moveNumber;
     for(int i = 0; i<7; i++){
         if(availableSelections[i]){
             if(outputs[i] == Maxvalue){
+              //cout << "we got a pos"<<endl;
               choices [pos] = i;
               pos++;
-	    }
+	          }
         }
 
     } 
