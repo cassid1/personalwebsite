@@ -316,8 +316,15 @@ float Network::cost(vector<float> wantedOutput)
 
 void Network::toFile(string name)
 {
-    ofstream newfile;
-    newfile.open(name.c_str());
+    ofstream temporaryfile;
+    streambuf * buf;
+    if(name == "cout"){
+        buf=cout.rdbuf();
+    }else{
+        temporaryfile.open(name.c_str());
+        buf = temporaryfile.rdbuf();
+    }
+    ostream newfile(buf)
     //first line, says how many layers
     newfile << layers << endl;
     //second line, says dimentions of the net in the oder that a constructor would take them.
