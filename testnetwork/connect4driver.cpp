@@ -1,9 +1,9 @@
 #include"connect4.h"
-//#include"connect4.cpp"
-//#include "Neural_net.h"
-//#include "Neural_net.cpp"
-//#include "net_fun.h"
-//#include "net_fun.cpp"
+#include"connect4.cpp"
+#include "Neural_net.h"
+#include "Neural_net.cpp"
+#include "net_fun.h"
+#include "net_fun.cpp"
 
 #include <emscripten/emscripten.h>
 
