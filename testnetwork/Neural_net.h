@@ -1,6 +1,6 @@
 #ifndef _NEURAL_NET_
 #define _NEURAL_NET_
-#include "net_fun.h"
+//#include "net_fun.h"
 
 
 

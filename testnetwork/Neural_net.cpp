@@ -1,4 +1,4 @@
-#include "Neural_net.h"
+//#include "Neural_net.h"
 
 Node::Node()
 {

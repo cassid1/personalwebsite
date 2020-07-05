@@ -1,11 +1,12 @@
-#include"connect4.h"
-#include"connect4.cpp"
-#include "Neural_net.h"
-#include "Neural_net.cpp"
 #include "net_fun.h"
 #include "net_fun.cpp"
+#include "Neural_net.h"
+#include "Neural_net.cpp"
+#include"connect4.h"
+#include"connect4.cpp"
 
-#include <emscripten/emscripten.h>
+
+//#include <emscripten/emscripten.h>
 
 int main(){
 //variables to keep track of summary statistics between games

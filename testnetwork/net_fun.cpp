@@ -1,4 +1,4 @@
-#include "net_fun.h"
+//#include "net_fun.h"
 
 float sig(float x, float steepness)
 {
@@ -15,7 +15,7 @@ float sigP(float x, float steepness)
 float rnum()
 {
     //return dis(gen);
-    return (float)rand() / RAND_MAX;
+    return (float)(rand() / RAND_MAX);
 
 }
 
