@@ -22,8 +22,8 @@ using namespace std;
 #endif // _RANDOM_CONFIG */
 
 //define sigmoid functions
-extern double sig(double x, double steepness = 1);
-extern double sigP(double x, double steepness = 1);
+extern float sig(float x, float steepness = 1);
+extern float sigP(float x, float steepness = 1);
 //returns value from 0 to 1
 extern float rnum();
 

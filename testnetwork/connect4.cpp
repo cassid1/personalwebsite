@@ -286,7 +286,7 @@ float moveFloat = (float) moveNumber;
     //given the output vector from the neural network, find the index value of the choice that has the highest output value, provided that choice is of a column that is not filled up
     //choice is goint to represent a column number, so a value from 0 to 6
     int choice = -1;
-    double Maxvalue = -1000;
+    float Maxvalue = -1000;
     int choices [7];
     int pos = 0;
     //creates vector choices that contains all outputs that are avaiavlle and have the highest value
