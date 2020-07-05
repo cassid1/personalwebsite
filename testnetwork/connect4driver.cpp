@@ -24,7 +24,7 @@ int totalMoves = 0;
 
     //a.createBlankFile("testbullshit.net");
 
-    bool playHuman = false;
+    bool playHuman = true;
     bool compGoesFirst = true;
     /*
     string gameType;
@@ -40,6 +40,12 @@ int totalMoves = 0;
     }
     */
    EM_ASM({console.log('I received: ' + $0);}, 100);
+   int x = EM_ASM_INT({
+  console.log('I received: ' + $0);
+  return $0 + 1;
+  }, 69);
+    cout <<"ret_val: "<< x <<endl;
+
     if(playHuman){
         /*
         int Turn = 0;
