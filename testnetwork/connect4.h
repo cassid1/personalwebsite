@@ -111,10 +111,7 @@ if(compGoesFirst){
 
 while(!isGameOver){
     //player takes a turn
-    int playerselection = EM_ASM_INT({
-  console.log('columnselection: ' + $0 +1);
-  return $0 + 1;
-}, 3);
+    int playerselection = EM_ASM_INT({console.log('I received: ' + $0);return $0 + 1;}, 3);
     //cout<<"enter column number (1 through 7): ";
     //cin>>playerselection;
     cout<<"recent computer move: "<<recentComputerMove<<endl;
