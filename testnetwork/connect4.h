@@ -126,8 +126,8 @@ while(!isGameOver){
     } else{
         //player takes a turn
         int playerselection;
-        cout<<"enter column number (1 through 7): ";
-        cin>>playerselection;
+        //cout<<"enter column number (1 through 7): ";
+        //cin>>playerselection;
         makeMove(playerselection-1);
         moveNumber++;
         if(blacksMove == true){

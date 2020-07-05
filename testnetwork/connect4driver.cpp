@@ -6,7 +6,7 @@
 //#include"connect4.cpp"
 
 
-//#include <emscripten/emscripten.h>
+#include <emscripten/emscripten.h>
 
 int main(){
 //variables to keep track of summary statistics between games
@@ -25,7 +25,7 @@ int totalMoves = 0;
     //a.createBlankFile("testbullshit.net");
 
     bool playHuman = false;
-    bool compGoesFirst = false;
+    bool compGoesFirst = true;
     /*
     string gameType;
     cout<<"do you want the computer to train itself, or do you want to play against it?\n enter either cpu or human:";
@@ -39,8 +39,9 @@ int totalMoves = 0;
         return 0;
     }
     */
-
+   EM_ASM({console.log('I received: ' + $0);}, 100);
     if(playHuman){
+        /*
         int Turn = 0;
         cout<<"do you want to go first or second?\n enter 1 or 2:";
         cin>>Turn;
@@ -52,6 +53,7 @@ int totalMoves = 0;
             cout<<"wrong input"<<endl;
             return 0;
         }
+        */
         a.playUserGame(compGoesFirst);
     }
     
