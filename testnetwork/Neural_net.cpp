@@ -316,15 +316,22 @@ float Network::cost(vector<float> wantedOutput)
 
 void Network::toFile(string name)
 {
-    ofstream temporaryfile;
-    streambuf * buf;
     if(name == "cout"){
-        buf=cout.rdbuf();
+        cout << layers <<endl;
+        for (unsigned int i = 0; i < layers; i++){
+            cout << myNet[i]->getSize() << ' ';
+        }
+        cout << endl;
+        for (unsigned int i = 1; i < layers; i++){
+        //for each node
+            for (unsigned int j = 0; j < myNet[i]->getSize(); j++){
+                (*myNet[i])[j].printWeights(cout);
+                (*myNet[i])[j].printBias(cout);
+            }
+        }
     }else{
-        temporaryfile.open(name.c_str());
-        buf = temporaryfile.rdbuf();
-    }
-    ostream newfile(buf);
+    ofstream newfile;
+    newfile.open(name.c_str());
     //first line, says how many layers
     newfile << layers << endl;
     //second line, says dimentions of the net in the oder that a constructor would take them.
@@ -346,6 +353,7 @@ void Network::toFile(string name)
     }
 
     newfile.close();
+    }
 }
 Network &Network::operator*=(float a)
 {
