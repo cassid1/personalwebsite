@@ -147,10 +147,12 @@ float Node::calcActivation()
     //sets AND returns the activation of the node
     if (ws)
     {
-        double sum = b;
+        float sum = b;
         for (unsigned int i = 0; i < lBefore->getSize(); i++)
             sum += (*lBefore)[i].getActivation() * ws[i];
+        cout << "activation before was: " << activation <<endl;
         activation = sig(sum);
+        cout << "got activation of: "<< activation <<endl;
     }
     return activation;
 }

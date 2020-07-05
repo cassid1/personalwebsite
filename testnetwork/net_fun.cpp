@@ -1,10 +1,10 @@
 #include "net_fun.h"
 
-double sig(double x, double steepness)
+float sig(float x, float steepness)
 {
-    return 1.0/ (1 + pow(2.7182818284590452354, - steepness * x));
+    return 1.0/ (1 + pow(2.71828, - steepness * x));
 }
-double sigP(double x, double steepness)
+float sigP(float x, float steepness)
 {
     // defined the value of e^(-steepness * x) so the computer
     // wouldnt have to do it three times in the function
