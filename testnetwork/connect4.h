@@ -62,7 +62,7 @@ class GameBoard{
   void initializeGameBoard();
   void displayCurrentGameBoard();
   void makeMove(int c);
-  void makeTurn();
+  int makeTurn();
   void updateNetworks();
 
 //uses above functions to play 1 CPU vs CPU training game
@@ -99,45 +99,38 @@ void playUserGame(bool compGoesFirst){
         learnerP = &(learner);
         learner2P = &(learner2);
 
+        int recentComputerMove;
+
 //has player take a turn at the begining or not depending on if they wanted to go first or not
-if(!compGoesFirst){
-            int playerselection;
-        cout<<"enter column number (1 through 7): ";
-        cin>>playerselection;
-        makeMove(playerselection-1);
-        moveNumber++;
-        if(blacksMove == true){
-        blacksMove=false;
-        }
-        else
-        {
-            blacksMove = true;
-        }     
-        displayCurrentGameBoard();
+if(compGoesFirst){
+    //computer takes a turn
+    recentComputerMove = makeTurn();
+    moveNumber++;
+    displayCurrentGameBoard();
 }
 
 while(!isGameOver){
-    //computer takes a turn
-    makeTurn();
+    //player takes a turn
+    int playerselection;
+    //cout<<"enter column number (1 through 7): ";
+    //cin>>playerselection;
+    cout<<"recent computer move: "<<recentComputerMove<<endl;
+    makeMove(playerselection-1);
     moveNumber++;
-    displayCurrentGameBoard();
+    if(blacksMove == true){
+        blacksMove=false;
+    }else{
+        blacksMove = true;
+    }     
+	displayCurrentGameBoard();
+
     if(isGameOver){
         break;
     } else{
-        //player takes a turn
-        int playerselection;
-        //cout<<"enter column number (1 through 7): ";
-        //cin>>playerselection;
-        makeMove(playerselection-1);
+        //computer takes a turn
+        recentComputerMove = makeTurn();
         moveNumber++;
-        if(blacksMove == true){
-        blacksMove=false;
-        }
-        else
-        {
-            blacksMove = true;
-        }     
-	    displayCurrentGameBoard();
+        displayCurrentGameBoard();
     }
 }
 

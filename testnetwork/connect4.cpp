@@ -244,7 +244,7 @@ float moveFloat = (float) moveNumber;
     learner2P->toFile("connect4red.net");
 }
 
-    void GameBoard::makeTurn(){
+    int GameBoard::makeTurn(){
         vector<float> inputs;
         float outputs [7];
 
@@ -336,7 +336,8 @@ float moveFloat = (float) moveNumber;
         else
         {
             blacksMove = true;
-        }   
+        }
+  return choice;    
 }
 
   void GameBoard::makeMove(int c){
