@@ -1,5 +1,5 @@
 OPTS = -Wall -g -std=c++11
-CC = em++
+CC = g++
 
 connect4driver: connect4driver.o 
 	$(CC) $(OPTS) -o connect4driver connect4driver.o net_fun.o Neural_net.o connect4.o -lm
