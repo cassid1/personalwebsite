@@ -2,6 +2,7 @@
 #define _CONNECT_4_
 
 #include "Neural_net.h"
+#include <emscripten/emscripten.h>
 using namespace std;
 
 class GameBoard{
