@@ -245,19 +245,7 @@ Network::Network(string name)
         v.push_back(b);
         cout << "b: " << b <<endl;
     }
-    //for dealing with emscripten being ass for no reason
-    if(a == 1){
-        v.pop_back();
-        v.push_back(126);
-        v.push_back(7);
-        v.push_back(7);
-        a = 3;
-    }
-    int checker;
-    ifs >>checker;
-    cout << "The checker is: "<<checker<<endl;
     layers = v.size();
-    cout << "This network has " << layers << endl;
     myNet = new Layer *[layers];
     myNet[0] = new Layer(v[0]);
     //make a rightful amount of layers

@@ -72,10 +72,10 @@ class GameBoard{
         //loads the two networks
         Network learner("connect4black.net");
         learner.printActivations();
-        learner.toFile("cout");
+        //learner.toFile("cout");
         Network learner2("connect4red.net");
         learner2.printActivations();
-        learner2.toFile("cout");
+        //learner2.toFile("cout");
 	//const vector<int> dimentions = {126,75,40,7};
 	//Network learner(dimentions, false, true);
 	//Network learner2(dimentions, false, true);
@@ -121,7 +121,9 @@ while(!isGameOver){
     makeTurn();
     moveNumber++;
     displayCurrentGameBoard();
-
+    if(isGameOver){
+        break;
+    } else{
         //player takes a turn
         int playerselection;
         cout<<"enter column number (1 through 7): ";
@@ -136,6 +138,7 @@ while(!isGameOver){
             blacksMove = true;
         }     
 	    displayCurrentGameBoard();
+    }
 }
 
 }
