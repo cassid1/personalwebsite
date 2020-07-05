@@ -26,7 +26,7 @@ int totalMoves = 0;
 
     bool playHuman = false;
     bool compGoesFirst = false;
-    
+    /*
     string gameType;
     cout<<"do you want the computer to train itself, or do you want to play against it?\n enter either cpu or human:";
     cin>>gameType;
@@ -38,7 +38,7 @@ int totalMoves = 0;
         cout<<"wrong input"<<endl;
         return 0;
     }
-    
+    */
 
     if(playHuman){
         int Turn = 0;
@@ -56,7 +56,7 @@ int totalMoves = 0;
     }
     
     if(!playHuman){
-        int Games = 1;
+        int Games = 3;
         //cout<<"how many games should it train on?\n enter an integer:";
         //cin>>Games;
         for(int i = 0; i<  Games; i++){
