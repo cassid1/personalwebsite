@@ -109,10 +109,15 @@ if(compGoesFirst){
     moveNumber++;
     displayCurrentGameBoard();
 }
-
+int hasPlayerChosen = 0;
 while(!isGameOver){
     //player takes a turn
-    int playerselection = EM_ASM_INT({console.log('I received: ' + $0);return $0 + 1;}, 3);
+    while(hasPlayerChosen == 0){
+        hasPlayerChosen = EM_ASM_INT({console.log('I received: ' + $0);return getHasPlayerChosen();}, 3);
+    }
+    int playerselection = EM_ASM_INT({console.log('I receivedddddd: ' + $0);return getPlayerSelection();}, 4);
+    EM_ASM({setHasPlayerChosen($0);}, 0);
+    hasPlayerChosen = 0;
     //cout<<"enter column number (1 through 7): ";
     //cin>>playerselection;
     cout<<"recent computer move: "<<recentComputerMove<<endl;
