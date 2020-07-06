@@ -89,3 +89,22 @@ document.querySelector('.columnselector')
           <div class="cell" id="cell56" onclick="selectColumn(6)"></div>
         </div>
         </div>
+
+<button class="cell" id="cell12" onclick="selectColumn(2)">yeetus</button>
+
+var playerselection = 3;
+var hasPlayerChosen = 0;
+function getHasPlayerChosen(){
+  return 1;
+  //return hasPlayerChosen;
+}
+function getPlayerSelection(){
+  return playerselection;
+}
+function setHasPlayerChosen(shouldbezero){
+  hasPlayerChosen = shouldbezero;
+}
+function selectColumn(column){
+  playerselection = column;
+  hasPlayerChosen = 1;
+}

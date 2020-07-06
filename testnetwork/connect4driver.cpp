@@ -7,8 +7,11 @@
 
 
 #include <emscripten/emscripten.h>
+#ifdef __cplusplus
+    extern "C" {
+    #endif
 
-int main(){
+void EMSCRIPTEN_KEEPALIVE maine(){
 //variables to keep track of summary statistics between games
 float totalBlackWins = 0;
 float totalRedWins = 0;
@@ -91,5 +94,7 @@ int totalMoves = 0;
     cout<<"Total Selections: "<<totalChoices<<endl;
     cout<<"Total Moves: "<<totalMoves<<endl; 
     }
-
+    #ifdef __cplusplus
+    }
+    #endif
 }

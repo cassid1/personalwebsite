@@ -1,5 +1,19 @@
-
-
+var playerselection = 3;
+var hasPlayerChosen = 0;
+function getHasPlayerChosen(){
+  return 1;
+  //return hasPlayerChosen;
+}
+function getPlayerSelection(){
+  return playerselection;
+}
+function setHasPlayerChosen(shouldbezero){
+  hasPlayerChosen = shouldbezero;
+}
+function selectColumn(column){
+  playerselection = column;
+  hasPlayerChosen = 1;
+}
 // The Module object: Our interface to the outside world. We import
 // and export values on it. There are various ways Module can be used:
 // 1. Not defined. We create it here
