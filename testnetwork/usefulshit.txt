@@ -90,30 +90,79 @@ document.querySelector('.columnselector')
         </div>
         </div>
 
-<button class="cell" id="cell12" onclick="selectColumn(2)">yeetus</button>
-<button class="startgame">Run connect4game</button>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <button class="startgame">Run connect4game</button>
 
 var playerselection = 3;
 var hasPlayerChosen = 0;
+var isOurTurn = 1;
+var grid = [
+  [0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0]
+];
  function getHasPlayerChosen(){
-  //var ret_val = prompt("Have u chosen lol?");
-  //return Number(ret_val);
-  return 1;
-  //return hasPlayerChosen;
-}
-function getPlayerSelection(){
-  return playerselection;
+  return hasPlayerChosen;
 }
 function setHasPlayerChosen(shouldbezero){
   hasPlayerChosen = shouldbezero;
 }
-function selectColumn(column){
-  playerselection = column;
-  hasPlayerChosen = 1;
+
+function getPlayerSelection(){
+  return playerselection;
+}
+function selectColumn(col){
+  //each column has 6 elements with 5 being on the bottom and 0 being on the top,
+  //start from the bottom, obviously
+  var height = 5;
+  while (grid[height][col] != 0){
+    height = height-1;
+  }
+  //now height represents the proper number!
+  if (isOurTurn == 1) {
+    $("#cell"+height+col).css("pointer-events", "none");
+    grid[height][col]=1;
+    //used for communicating with wasm
+    playerselection = col;
+    hasPlayerChosen = 1;
+    isOurTurn = 0;
+  } 
+  refreshGrid();
+}
+
+function selectColumnComputer(col){
+  //each column has 6 elements with 5 being on the bottom and 0 being on the top,
+  //start from the bottom, obviously
+  var height = 5;
+  while (grid[height][col] != 0){
+    height = height-1;
+  } 
+  if(isOurTurn == 0){
+    $("#cell"+height+col).css("pointer-events", "none");
+    grid[height][col]=2;
+    isOurTurn=1;
+  }
+  refreshGrid();
+}
+
+function refreshGrid() {
+  for (var row = 0; row < 6; row++) {
+    for (var col = 0; col < 7; col++) {
+      if (grid[row][col]==0) { 
+                document.getElementById("cell"+row+col).style.backgroundColor="#FFFFFF";
+      } else if (grid[row][col]==1) { //1 for yellow
+                document.getElementById("cell"+row+col).style.backgroundColor="#FFFF00";
+      } else if (grid[row][col]==2) { //2 for red
+                document.getElementById("cell"+row+col).style.backgroundColor="#FF0000";
+       }
+    }
+  }  
 }
 document.querySelector('.startgame')
     .addEventListener('click', function() {
-        alert('check console');
         var result = Module.ccall(
             'maine',	// name of C function 
             null,	// return type

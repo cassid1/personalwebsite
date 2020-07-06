@@ -28,7 +28,7 @@ int totalMoves = 0;
     //a.createBlankFile("testbullshit.net");
 
     bool playHuman = true;
-    bool compGoesFirst = true;
+    bool compGoesFirst = false;
     /*
     string gameType;
     cout<<"do you want the computer to train itself, or do you want to play against it?\n enter either cpu or human:";

@@ -103,26 +103,30 @@ void playUserGame(bool compGoesFirst){
         int recentComputerMove;
 
 //has player take a turn at the begining or not depending on if they wanted to go first or not
+int hasPlayerChosen = 0;
 if(compGoesFirst){
     //computer takes a turn
     recentComputerMove = makeTurn();
     moveNumber++;
     displayCurrentGameBoard();
+
+    EM_ASM({selectColumn($0);}, recentComputerMove);
+    //lets js know that the computer is done choosing
+    EM_ASM({setHasPlayerChosen($0);}, 0);
+    hasPlayerChosen = 0;
 }
-int hasPlayerChosen = 0;
 while(!isGameOver){
     //player takes a turn
+    //waiting for user to click on html element
     while(hasPlayerChosen == 0){
         hasPlayerChosen = EM_ASM_INT({console.log('I received: ' + $0);return getHasPlayerChosen();}, 3);
         if (hasPlayerChosen ==1){
             break;
         }
         printf("wating for selection...\n");
-        emscripten_sleep(100);
+        emscripten_sleep(500);
     }
     int playerselection = EM_ASM_INT({console.log('I receivedddddd: ' + $0);return getPlayerSelection();}, 4);
-    EM_ASM({setHasPlayerChosen($0);}, 0);
-    hasPlayerChosen = 0;
     //cout<<"enter column number (1 through 7): ";
     //cin>>playerselection;
     cout<<"recent computer move: "<<recentComputerMove<<endl;
@@ -142,6 +146,12 @@ while(!isGameOver){
         recentComputerMove = makeTurn();
         moveNumber++;
         displayCurrentGameBoard();
+
+        //sends computer selection to js
+        EM_ASM({selectColumnComputer($0);}, recentComputerMove);
+        //lets js know that the computer is done choosing
+        EM_ASM({setHasPlayerChosen($0);}, 0);
+        hasPlayerChosen = 0;
     }
 }
 
