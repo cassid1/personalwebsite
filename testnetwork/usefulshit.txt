@@ -91,10 +91,13 @@ document.querySelector('.columnselector')
         </div>
 
 <button class="cell" id="cell12" onclick="selectColumn(2)">yeetus</button>
+<button class="startgame">Run connect4game</button>
 
 var playerselection = 3;
 var hasPlayerChosen = 0;
-function getHasPlayerChosen(){
+ function getHasPlayerChosen(){
+  //var ret_val = prompt("Have u chosen lol?");
+  //return Number(ret_val);
   return 1;
   //return hasPlayerChosen;
 }
@@ -108,3 +111,13 @@ function selectColumn(column){
   playerselection = column;
   hasPlayerChosen = 1;
 }
+document.querySelector('.startgame')
+    .addEventListener('click', function() {
+        alert('check console');
+        var result = Module.ccall(
+            'maine',	// name of C function 
+            null,	// return type
+            null,	// argument types
+            null	// arguments
+        );
+    })

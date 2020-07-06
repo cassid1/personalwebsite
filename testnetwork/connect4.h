@@ -114,6 +114,11 @@ while(!isGameOver){
     //player takes a turn
     while(hasPlayerChosen == 0){
         hasPlayerChosen = EM_ASM_INT({console.log('I received: ' + $0);return getHasPlayerChosen();}, 3);
+        if (hasPlayerChosen ==1){
+            break;
+        }
+        printf("wating for selection...\n");
+        emscripten_sleep(100);
     }
     int playerselection = EM_ASM_INT({console.log('I receivedddddd: ' + $0);return getPlayerSelection();}, 4);
     EM_ASM({setHasPlayerChosen($0);}, 0);
