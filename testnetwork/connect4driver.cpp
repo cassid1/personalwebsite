@@ -19,7 +19,7 @@ void EMSCRIPTEN_KEEPALIVE maine(){
     //this funciton gets information from js radio button,
     //but also within js sets isOurTurn and hasPlayerMoved accordingly
     //and also resets game board
-    int JSfirstorsecond = EM_ASM_INT({JSfirstorsecond()});
+    int JSfirstorsecond = EM_ASM_INT({return JSfirstorsecond()});
     cout << "JSfirstorsecond is: "<<JSfirstorsecond<<endl;
     if (JSfirstorsecond == 1){
         cout<<"user goes first !"<<endl;
