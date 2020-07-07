@@ -133,6 +133,11 @@ function JSfirstorsecond(){
     [0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0]
   ];
+  for(col = 0; col < 7; col ++){
+    for(height = 0; height < 6; height ++){
+      $("#cell"+height+col).css("pointer-events", "auto");
+    }
+  }
   if(document.getElementById("RADIOgofirst").checked){
       hasPlayerChosen = 0;
       isOurTurn = 1;

@@ -80,15 +80,16 @@ void playUserGame(bool compGoesFirst){
 //has cpu take a turn at the begining or not depending on if they wanted to go first or not
 int hasPlayerChosen = 0;
 if(compGoesFirst){
-    //computer takes a turn
-    recentComputerMove = makeTurn();
-    moveNumber++;
-    //displayCurrentGameBoard();
+        //computer takes a turn
+        recentComputerMove = makeTurn();
+        moveNumber++;
+        displayCurrentGameBoard();
 
-    EM_ASM({selectColumnComputer($0);}, recentComputerMove);
-    //lets js know that the computer is done choosing
-    EM_ASM({setHasPlayerChosen($0);}, 0);
-    hasPlayerChosen = 0;
+        //sends computer selection to js
+        EM_ASM({selectColumnComputer($0);}, recentComputerMove);
+        //lets js know that the computer is done choosing
+        EM_ASM({setHasPlayerChosen($0);}, 0);
+        hasPlayerChosen = 0;
 }
 while(!isGameOver){
     //player takes a turn

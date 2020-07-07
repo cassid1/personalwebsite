@@ -19,13 +19,14 @@ void EMSCRIPTEN_KEEPALIVE maine(){
     //this funciton gets information from js radio button,
     //but also within js sets isOurTurn and hasPlayerMoved accordingly
     //and also resets game board
-   int JSfirstorsecond = EM_ASM_INT({JSfirstorsecond()});
-   if (JSfirstorsecond == 1){
-       compGoesFirst = false;
-   }else{
-       compGoesFirst = true;
-   }
-        a.playUserGame(compGoesFirst);
+    int JSfirstorsecond = EM_ASM_INT({JSfirstorsecond()});
+    if (JSfirstorsecond == 1){
+        compGoesFirst = false;
+    }else{
+        compGoesFirst = true;
+    }
+    emscripten_sleep(2000);
+    a.playUserGame(compGoesFirst);
 }
     
 #ifdef __cplusplus
