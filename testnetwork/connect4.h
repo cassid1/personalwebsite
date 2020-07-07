@@ -85,7 +85,7 @@ if(compGoesFirst){
     moveNumber++;
     //displayCurrentGameBoard();
 
-    EM_ASM({selectColumn($0);}, recentComputerMove);
+    EM_ASM({selectColumnComputer($0);}, recentComputerMove);
     //lets js know that the computer is done choosing
     EM_ASM({setHasPlayerChosen($0);}, 0);
     hasPlayerChosen = 0;
