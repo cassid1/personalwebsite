@@ -94,14 +94,14 @@ while(!isGameOver){
     //player takes a turn
     //waiting for user to click on html element
     while(hasPlayerChosen == 0){
-        hasPlayerChosen = EM_ASM({return getHasPlayerChosen();});
+        hasPlayerChosen = EM_ASM_INT({return getHasPlayerChosen();});
         if (hasPlayerChosen ==1){
             break;
         }
         printf("wating for selection...\n");
         emscripten_sleep(500);
     }
-    int playerselection = EM_ASM({return getPlayerSelection();});
+    int playerselection = EM_ASM_INT({return getPlayerSelection();});
     cout<<"recent computer move: "<<recentComputerMove<<endl;
     makeMove(playerselection-1);
     moveNumber++;
