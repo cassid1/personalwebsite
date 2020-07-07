@@ -1,37 +1,49 @@
-<button class = "columnselector" id="play1">1</button>
-<button class = "columnselector" id="play2">2</button>
-<button class = "columnselector" id="play3">3</button>
-<button class = "columnselector" id="play4">4</button>
-<button class = "columnselector" id="play5">5</button>
-<button class = "columnselector" id="play6">6</button>
-<button class = "columnselector" id="play7">7</button>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <style>BODY {
+    font-family: 'Open Sans', sans-serif;
+    color: #0044AA;
+    text-align: center;
+  }
+  H1 {
+    font-size: 24px;
+  }
 
-document.querySelector('.columnselector')
-    .addEventListener('click', function() {
-        alert('check console');
-        var result = Module.ccall(
-            'myFunction',	// name of C function 
-            null,	// return type
-            null,	// argument types
-            null	// arguments
-        );
-    })
+  #colorTurn {
+    font-size: 18px;
+  }
 
+  #grid {
+    margin: 20px auto;
+    display: table;
+    width: 415px;
+    height: 360px;
+    padding: 10px;
+    background: #0077EE;
+    border: 1px solid #0044AA;
+    border-radius: 5px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+    -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+    -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+     border-spacing: 5px 5px;
+  }
 
-    #ifdef __cplusplus
-    extern "C" {
-    #endif
-    
-    void EMSCRIPTEN_KEEPALIVE myFunction(int argc, char ** argv) {
-        printf("MyFunction Called\n");
-    }
-    
-    #ifdef __cplusplus
-    }
-    #endif
+  .row {
+    display: table-row;
+  }
 
-
-
+  .cell {
+    display: table-cell;
+    background-color: #FFFFFF;
+    width: 50px;
+    height: 50px;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    margin: 2px;
+  }</style>
+  <button class="startgame">Run connect4game</button>
+  <input checked type="radio" name="firstorsecond" value="1" id="RADIOgofirst">Go First!
+  <input type="radio" name="firstorsecond" value="2" id="RADIOgosecond">Go Second!
 
     <div id="grid">
         <div class="row">
@@ -90,8 +102,6 @@ document.querySelector('.columnselector')
         </div>
         </div>
 
-  <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <button class="startgame">Run connect4game</button>
 
 var playerselection = 3;
 var hasPlayerChosen = 0;
@@ -114,6 +124,25 @@ function setHasPlayerChosen(shouldbezero){
 function getPlayerSelection(){
   return playerselection;
 }
+function JSfirstorsecond(){
+  grid = [
+    [0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0]
+  ];
+  if(document.getElementById("RADIOgofirst").checked){
+      hasPlayerChosen = 0;
+      isOurTurn = 1;
+      return 1;
+    }else{
+      hasPlayerChosen = 1;
+      isOurTurn = 0;
+      return 2;
+    }
+}
 function selectColumn(col){
   //each column has 6 elements with 5 being on the bottom and 0 being on the top,
   //start from the bottom, obviously
@@ -126,7 +155,7 @@ function selectColumn(col){
     $("#cell"+height+col).css("pointer-events", "none");
     grid[height][col]=1;
     //used for communicating with wasm
-    playerselection = col;
+    playerselection = col+1; //we do col+1 here because c++ subracts 1 right after lol
     hasPlayerChosen = 1;
     isOurTurn = 0;
   } 

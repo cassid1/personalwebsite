@@ -66,31 +66,6 @@ class GameBoard{
   int makeTurn();
   void updateNetworks();
 
-//uses above functions to play 1 CPU vs CPU training game
-  void playCPUGame(){
-        initializeGameBoard();
-
-        //loads the two networks
-        Network learner("connect4black.net");
-        learner.printActivations();
-        //learner.toFile("cout");
-        Network learner2("connect4red.net");
-        learner2.printActivations();
-        //learner2.toFile("cout");
-	//const vector<int> dimentions = {126,75,40,7};
-	//Network learner(dimentions, false, true);
-	//Network learner2(dimentions, false, true);
-        learnerP = &(learner);
-        learner2P = &(learner2);
-
-        while(!isGameOver){
-        makeTurn();
-        moveNumber++;
-        }
-	    displayCurrentGameBoard();
-        //updateNetworks();
-    }
-
 void playUserGame(bool compGoesFirst){
     initializeGameBoard();
 
@@ -102,13 +77,13 @@ void playUserGame(bool compGoesFirst){
 
         int recentComputerMove;
 
-//has player take a turn at the begining or not depending on if they wanted to go first or not
+//has cpu take a turn at the begining or not depending on if they wanted to go first or not
 int hasPlayerChosen = 0;
 if(compGoesFirst){
     //computer takes a turn
     recentComputerMove = makeTurn();
     moveNumber++;
-    displayCurrentGameBoard();
+    //displayCurrentGameBoard();
 
     EM_ASM({selectColumn($0);}, recentComputerMove);
     //lets js know that the computer is done choosing
@@ -119,16 +94,14 @@ while(!isGameOver){
     //player takes a turn
     //waiting for user to click on html element
     while(hasPlayerChosen == 0){
-        hasPlayerChosen = EM_ASM_INT({console.log('I received: ' + $0);return getHasPlayerChosen();}, 3);
+        hasPlayerChosen = EM_ASM({return getHasPlayerChosen();});
         if (hasPlayerChosen ==1){
             break;
         }
         printf("wating for selection...\n");
         emscripten_sleep(500);
     }
-    int playerselection = EM_ASM_INT({console.log('I receivedddddd: ' + $0);return getPlayerSelection();}, 4);
-    //cout<<"enter column number (1 through 7): ";
-    //cin>>playerselection;
+    int playerselection = EM_ASM({return getPlayerSelection();});
     cout<<"recent computer move: "<<recentComputerMove<<endl;
     makeMove(playerselection-1);
     moveNumber++;
