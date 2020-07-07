@@ -174,11 +174,9 @@ function selectColumnComputer(col){
   while (grid[height][col] != 0){
     height = height-1;
   } 
-  if(isOurTurn == 0){
     $("#cell"+height+col).css("pointer-events", "none");
     grid[height][col]=2;
     isOurTurn=1;
-  }
   refreshGrid();
 }
 

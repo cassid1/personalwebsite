@@ -20,12 +20,14 @@ void EMSCRIPTEN_KEEPALIVE maine(){
     //but also within js sets isOurTurn and hasPlayerMoved accordingly
     //and also resets game board
     int JSfirstorsecond = EM_ASM_INT({JSfirstorsecond()});
+    cout << "JSfirstorsecond is: "<<JSfirstorsecond<<endl;
     if (JSfirstorsecond == 1){
+        cout<<"user goes first !"<<endl;
         compGoesFirst = false;
     }else{
+        cout<<"user goes second !"<<endl;
         compGoesFirst = true;
     }
-    emscripten_sleep(2000);
     a.playUserGame(compGoesFirst);
 }
     

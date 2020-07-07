@@ -1,1 +1,107 @@
-<!doctypehtml><html lang=en-us><head><meta charset=utf-8><meta content="text/html; charset=utf-8"http-equiv=Content-Type><title>Emscripten-Generated Code</title><style>.emscripten{padding-right:0;margin-left:auto;margin-right:auto;display:block}textarea.emscripten{font-family:monospace;width:80%}div.emscripten{text-align:center}div.emscripten_border{border:1px solid #000}canvas.emscripten{border:0 none;background-color:#000}.spinner{height:50px;width:50px;margin:0 auto;-webkit-animation:rotation .8s linear infinite;-moz-animation:rotation .8s linear infinite;-o-animation:rotation .8s linear infinite;animation:rotation .8s linear infinite;border-left:10px solid #0096f0;border-right:10px solid #0096f0;border-bottom:10px solid #0096f0;border-top:10px solid #6400c8;border-radius:100%;background-color:#c864fa}@-webkit-keyframes rotation{from{-webkit-transform:rotate(0)}to{-webkit-transform:rotate(360deg)}}@-moz-keyframes rotation{from{-moz-transform:rotate(0)}to{-moz-transform:rotate(360deg)}}@-o-keyframes rotation{from{-o-transform:rotate(0)}to{-o-transform:rotate(360deg)}}@keyframes rotation{from{transform:rotate(0)}to{transform:rotate(360deg)}}</style></head><body><hr><figure id=spinner style=overflow:visible><div class=spinner></div><center style=margin-top:.5em><strong>emscripten</strong></center></figure><div class=emscripten id=status>Downloading...</div><div class=emscripten><progress hidden id=progress max=100 value=0></progress></div><div class=emscripten_border><canvas class=emscripten id=canvas oncontextmenu=event.preventDefault() tabindex=-1></canvas></div><hr><div class=emscripten><input type=checkbox id=resize>Resize canvas <input type=checkbox id=pointerLock checked>Lock/hide mouse pointer     <input type=button onclick='Module.requestFullscreen(document.getElementById("pointerLock").checked,document.getElementById("resize").checked)'value=Fullscreen></div><hr><textarea class=emscripten id=output rows=8></textarea><hr><script>var statusElement=document.getElementById("status"),progressElement=document.getElementById("progress"),spinnerElement=document.getElementById("spinner"),Module={preRun:[],postRun:[],print:function(){var e=document.getElementById("output");return e&&(e.value=""),function(t){arguments.length>1&&(t=Array.prototype.slice.call(arguments).join(" ")),console.log(t),e&&(e.value+=t+"\n",e.scrollTop=e.scrollHeight)}}(),printErr:function(e){arguments.length>1&&(e=Array.prototype.slice.call(arguments).join(" ")),console.error(e)},canvas:function(){var e=document.getElementById("canvas");return e.addEventListener("webglcontextlost",(function(e){alert("WebGL context lost. You will need to reload the page."),e.preventDefault()}),!1),e}(),setStatus:function(e){if(Module.setStatus.last||(Module.setStatus.last={time:Date.now(),text:""}),e!==Module.setStatus.last.text){var t=e.match(/([^(]+)\((\d+(\.\d+)?)\/(\d+)\)/),n=Date.now();t&&n-Module.setStatus.last.time<30||(Module.setStatus.last.time=n,Module.setStatus.last.text=e,t?(e=t[1],progressElement.value=100*parseInt(t[2]),progressElement.max=100*parseInt(t[4]),progressElement.hidden=!1,spinnerElement.hidden=!1):(progressElement.value=null,progressElement.max=null,progressElement.hidden=!0,e||(spinnerElement.hidden=!0)),statusElement.innerHTML=e)}},totalDependencies:0,monitorRunDependencies:function(e){this.totalDependencies=Math.max(this.totalDependencies,e),Module.setStatus(e?"Preparing... ("+(this.totalDependencies-e)+"/"+this.totalDependencies+")":"All downloads complete.")}};Module.setStatus("Downloading..."),window.onerror=function(){Module.setStatus("Exception thrown, see JavaScript console"),spinnerElement.style.display="none",Module.setStatus=function(e){e&&Module.printErr("[post-exception status] "+e)}}</script><script async src=connect4driver.js></script></body></html>
+<!doctypehtml><html lang=en-us><head>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <style>BODY {
+    font-family: 'Open Sans', sans-serif;
+    color: #0044AA;
+    text-align: center;
+  }
+  H1 {
+    font-size: 24px;
+  }
+
+  #colorTurn {
+    font-size: 18px;
+  }
+
+  #grid {
+    margin: 20px auto;
+    display: table;
+    width: 415px;
+    height: 360px;
+    padding: 10px;
+    background: #0077EE;
+    border: 1px solid #0044AA;
+    border-radius: 5px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+    -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+    -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+     border-spacing: 5px 5px;
+  }
+
+  .row {
+    display: table-row;
+  }
+
+  .cell {
+    display: table-cell;
+    background-color: #FFFFFF;
+    width: 50px;
+    height: 50px;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    margin: 2px;
+  }</style>
+  <button class="startgame">Run connect4game</button>
+  <input checked type="radio" name="firstorsecond" value="1" id="RADIOgofirst">Go First!
+  <input type="radio" name="firstorsecond" value="2" id="RADIOgosecond">Go Second!
+  <meta charset=utf-8><meta content="text/html; charset=utf-8"http-equiv=Content-Type><title>Emscripten-Generated Code</title><style>.emscripten{padding-right:0;margin-left:auto;margin-right:auto;display:block}textarea.emscripten{font-family:monospace;width:80%}div.emscripten{text-align:center}div.emscripten_border{border:1px solid #000}canvas.emscripten{border:0 none;background-color:#000}.spinner{height:50px;width:50px;margin:0 auto;-webkit-animation:rotation .8s linear infinite;-moz-animation:rotation .8s linear infinite;-o-animation:rotation .8s linear infinite;animation:rotation .8s linear infinite;border-left:10px solid #0096f0;border-right:10px solid #0096f0;border-bottom:10px solid #0096f0;border-top:10px solid #6400c8;border-radius:100%;background-color:#c864fa}@-webkit-keyframes rotation{from{-webkit-transform:rotate(0)}to{-webkit-transform:rotate(360deg)}}@-moz-keyframes rotation{from{-moz-transform:rotate(0)}to{-moz-transform:rotate(360deg)}}@-o-keyframes rotation{from{-o-transform:rotate(0)}to{-o-transform:rotate(360deg)}}@keyframes rotation{from{transform:rotate(0)}to{transform:rotate(360deg)}}</style></head><body>
+    
+    <div id="grid">
+      <div class="row">
+        <div class="cell" id="cell00" onclick="selectColumn(0)"></div>
+        <div class="cell" id="cell01" onclick="selectColumn(1)"></div>
+        <div class="cell" id="cell02" onclick="selectColumn(2)"></div>
+        <div class="cell" id="cell03" onclick="selectColumn(3)"></div>
+        <div class="cell" id="cell04" onclick="selectColumn(4)"></div>
+        <div class="cell" id="cell05" onclick="selectColumn(5)"></div>
+        <div class="cell" id="cell06" onclick="selectColumn(6)"></div>
+      </div>
+      <div class="row">  
+        <div class="cell" id="cell10" onclick="selectColumn(0)"></div>
+        <div class="cell" id="cell11" onclick="selectColumn(1)"></div>
+        <div class="cell" id="cell12" onclick="selectColumn(2)"></div>
+        <div class="cell" id="cell13" onclick="selectColumn(3)"></div>
+        <div class="cell" id="cell14" onclick="selectColumn(4)"></div>
+        <div class="cell" id="cell15" onclick="selectColumn(5)"></div>
+        <div class="cell" id="cell16" onclick="selectColumn(6)"></div>
+      </div>
+      <div class="row">  
+        <div class="cell" id="cell20" onclick="selectColumn(0)"></div>
+        <div class="cell" id="cell21" onclick="selectColumn(1)"></div>
+        <div class="cell" id="cell22" onclick="selectColumn(2)"></div>
+        <div class="cell" id="cell23" onclick="selectColumn(3)"></div>
+        <div class="cell" id="cell24" onclick="selectColumn(4)"></div>
+        <div class="cell" id="cell25" onclick="selectColumn(5)"></div>
+        <div class="cell" id="cell26" onclick="selectColumn(6)"></div>
+      </div>
+      <div class="row">  
+        <div class="cell" id="cell30" onclick="selectColumn(0)"></div>
+        <div class="cell" id="cell31" onclick="selectColumn(1)"></div>
+        <div class="cell" id="cell32" onclick="selectColumn(2)"></div>
+        <div class="cell" id="cell33" onclick="selectColumn(3)"></div>
+        <div class="cell" id="cell34" onclick="selectColumn(4)"></div>
+        <div class="cell" id="cell35" onclick="selectColumn(5)"></div>
+        <div class="cell" id="cell36" onclick="selectColumn(6)"></div>
+      </div>
+      <div class="row">
+        <div class="cell" id="cell40" onclick="selectColumn(0)"></div>
+        <div class="cell" id="cell41" onclick="selectColumn(1)"></div>
+        <div class="cell" id="cell42" onclick="selectColumn(2)"></div>
+        <div class="cell" id="cell43" onclick="selectColumn(3)"></div>
+        <div class="cell" id="cell44" onclick="selectColumn(4)"></div>
+        <div class="cell" id="cell45" onclick="selectColumn(5)"></div>
+        <div class="cell" id="cell46" onclick="selectColumn(6)"></div>
+      </div>
+      <div class="row">
+        <div class="cell" id="cell50" onclick="selectColumn(0)"></div>
+        <div class="cell" id="cell51" onclick="selectColumn(1)"></div>
+        <div class="cell" id="cell52" onclick="selectColumn(2)"></div>
+        <div class="cell" id="cell53" onclick="selectColumn(3)"></div>
+        <div class="cell" id="cell54" onclick="selectColumn(4)"></div>
+        <div class="cell" id="cell55" onclick="selectColumn(5)"></div>
+        <div class="cell" id="cell56" onclick="selectColumn(6)"></div>
+      </div>
+      </div>
+
+    <hr><figure id=spinner style=overflow:visible><div class=spinner></div><center style=margin-top:.5em><strong>emscripten</strong></center></figure><div class=emscripten id=status>Downloading...</div><div class=emscripten><progress hidden id=progress max=100 value=0></progress></div><div class=emscripten_border><canvas class=emscripten id=canvas oncontextmenu=event.preventDefault() tabindex=-1></canvas></div><hr><div class=emscripten><input type=checkbox id=resize>Resize canvas <input type=checkbox id=pointerLock checked>Lock/hide mouse pointer     <input type=button onclick='Module.requestFullscreen(document.getElementById("pointerLock").checked,document.getElementById("resize").checked)'value=Fullscreen></div><hr><textarea class=emscripten id=output rows=8></textarea><hr><script>var statusElement=document.getElementById("status"),progressElement=document.getElementById("progress"),spinnerElement=document.getElementById("spinner"),Module={preRun:[],postRun:[],print:function(){var e=document.getElementById("output");return e&&(e.value=""),function(t){arguments.length>1&&(t=Array.prototype.slice.call(arguments).join(" ")),console.log(t),e&&(e.value+=t+"\n",e.scrollTop=e.scrollHeight)}}(),printErr:function(e){arguments.length>1&&(e=Array.prototype.slice.call(arguments).join(" ")),console.error(e)},canvas:function(){var e=document.getElementById("canvas");return e.addEventListener("webglcontextlost",(function(e){alert("WebGL context lost. You will need to reload the page."),e.preventDefault()}),!1),e}(),setStatus:function(e){if(Module.setStatus.last||(Module.setStatus.last={time:Date.now(),text:""}),e!==Module.setStatus.last.text){var t=e.match(/([^(]+)\((\d+(\.\d+)?)\/(\d+)\)/),n=Date.now();t&&n-Module.setStatus.last.time<30||(Module.setStatus.last.time=n,Module.setStatus.last.text=e,t?(e=t[1],progressElement.value=100*parseInt(t[2]),progressElement.max=100*parseInt(t[4]),progressElement.hidden=!1,spinnerElement.hidden=!1):(progressElement.value=null,progressElement.max=null,progressElement.hidden=!0,e||(spinnerElement.hidden=!0)),statusElement.innerHTML=e)}},totalDependencies:0,monitorRunDependencies:function(e){this.totalDependencies=Math.max(this.totalDependencies,e),Module.setStatus(e?"Preparing... ("+(this.totalDependencies-e)+"/"+this.totalDependencies+")":"All downloads complete.")}};Module.setStatus("Downloading..."),window.onerror=function(){Module.setStatus("Exception thrown, see JavaScript console"),spinnerElement.style.display="none",Module.setStatus=function(e){e&&Module.printErr("[post-exception status] "+e)}}</script><script async src=connect4driver.js></script></body></html>
