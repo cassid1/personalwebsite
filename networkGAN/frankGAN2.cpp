@@ -2,6 +2,12 @@
 
 #include <emscripten/emscripten.h>
 
+//send output via js function
+EM_JS(void, say_hello, (const char* str), {
+    console.log('hello ' + UTF8ToString(str));
+    update_generated_sentence(UTF8ToString(str));
+}
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -96,10 +102,7 @@ int EMSCRIPTEN_KEEPALIVE main_frankGAN()
 
         //sending the output to JS
         const char * str = frankGAN.getContentLayer();
-        EM_JS(void, say_hello, (const char* str), {
-            console.log('hello ' + UTF8ToString(str));
-            update_generated_sentence(UTF8ToString(str));
-        }
+        say_hello(str);
         cout << frankGAN.getContentLayer() << "    ("<< (float)correct / attempted << " discriminated)" <<endl;
     }
 
