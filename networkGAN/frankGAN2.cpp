@@ -100,7 +100,7 @@ int EMSCRIPTEN_KEEPALIVE main_frankGAN()
         frankGAN.evaluate();
 
         //sending the output to JS
-        const char * str = frankGAN.getContentLayer();
+        const char * str = frankGAN.getContentLayer().c_str();
         say_hello(str);
         cout << frankGAN.getContentLayer() << "    ("<< (float)correct / attempted << " discriminated)" <<endl;
     }
