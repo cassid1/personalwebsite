@@ -41,15 +41,15 @@ int EMSCRIPTEN_KEEPALIVE main_frankGAN()
     int rounds = 1, subset = 2, correct = 0, attempted = 0;
     float discrate = 0.010, genrate = 1, chaosrate= 0.0;
 
-    for (int i = 0; i < rounds; i++)
-    {
+    //for (int i = 0; i < rounds; i++)
+    //{
         //makes two gans to hold the gradient values of each part of the net
         GAN discgrad(frankGAN.getLayerSizes(), 1, false);
         GAN gengrad(frankGAN.getLayerSizes(), 1, false);
 
         //fake data
-        for (int i = 0; i < subset; i++)
-        {
+        //for (int i = 0; i < subset; i++)
+        //{
             attempted++;
             frankGAN.setInputLayer();
             frankGAN.evaluate();
@@ -65,10 +65,10 @@ int EMSCRIPTEN_KEEPALIVE main_frankGAN()
 
 
             
-        }
+        //}
         //real data
-        for (int i = 0; i < subset; i++)
-        {
+        //for (int i = 0; i < subset; i++)
+        //{
             attempted++;
             frankGAN.setContentLayer(extractString(frankstring, rand() % CHARS_IN_FRANKENSTEIN, len));
             frankGAN.evaluate();
@@ -78,7 +78,7 @@ int EMSCRIPTEN_KEEPALIVE main_frankGAN()
 
             if (frankGAN.getOutput(0) > frankGAN.getOutput(1))
                 correct++;
-        }
+        //}
         //scaling steps, then taking a walk backwards along the corresponding gradients.
         discgrad *= discrate;
         gengrad *= genrate;
@@ -101,7 +101,7 @@ int EMSCRIPTEN_KEEPALIVE main_frankGAN()
         double percent = (double)correct / attempted;
         EM_ASM({update_disc_data($0);}, percent);
         cout << frankGAN.getContentLayer() << "    ("<< (float)correct / attempted << " discriminated)" <<endl;
-    }
+    //}
 
 
     //saves the training session.

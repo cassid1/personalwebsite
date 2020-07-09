@@ -1,0 +1,19 @@
+document.querySelector('.startgame')
+    .addEventListener('click', function() {
+        var result = Module.ccall(
+            'main_frankGAN',	// name of C function 
+            null,	// return type
+            null,	// argument types
+            null	// arguments
+        );
+    })
+function update_generated_sentence(sentence){
+    document.querySelector(".eliott-text").text = sentence;
+}
+function update_disc_data(numb){
+    document.querySelector(".eliott-number").text = numb;
+}
+
+<button class="startgame">start</button>
+    <p class="eliott-text">yeet</p>
+    <p class="eliott-number">5</p>
