@@ -7,7 +7,7 @@
 extern "C" {
 #endif
 
-int EMSCRIPTEN_KEEPALIVE main_frankGAN()
+void EMSCRIPTEN_KEEPALIVE main_frankGAN()
 {
     //sets random seed to the current time
     srand(time(NULL));
