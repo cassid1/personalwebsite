@@ -5,7 +5,6 @@
 //send output via js function
 EM_JS(void, say_hello, (const char* str), {
     console.log('hello ' + UTF8ToString(str));
-    update_generated_sentence(UTF8ToString(str));
 });
 
 #ifdef __cplusplus
