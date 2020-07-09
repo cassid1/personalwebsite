@@ -3,8 +3,8 @@
 #include <emscripten/emscripten.h>
 
 //send output via js function
-EM_JS(void, say_hello, (const char* str), {
-    console.log('hello ' + UTF8ToString(str));
+EM_JS(void, update_js_text, (const char* str), {
+    update_generated_sentence(UTF8ToString(str));
 });
 
 #ifdef __cplusplus
@@ -42,7 +42,7 @@ int EMSCRIPTEN_KEEPALIVE main_frankGAN()
 
     //all info for how big of steps along gradient is taken, how big the subsets of training data is,
     //various variable that affect learning
-    int rounds = 1, subset = 10, correct = 0, attempted = 0;
+    int rounds = 1, subset = 2, correct = 0, attempted = 0;
     float discrate = 0.010, genrate = 1, chaosrate= 0.0;
 
     for (int i = 0; i < rounds; i++)
@@ -101,7 +101,9 @@ int EMSCRIPTEN_KEEPALIVE main_frankGAN()
 
         //sending the output to JS
         const char * str = frankGAN.getContentLayer().c_str();
-        say_hello(str);
+        update_js_text(str);
+        double percent = (double)correct / attempted
+        EM_ASM({update_disc_data($0);}, percent);
         cout << frankGAN.getContentLayer() << "    ("<< (float)correct / attempted << " discriminated)" <<endl;
     }
 
