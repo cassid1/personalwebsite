@@ -2,7 +2,6 @@
 
 #include <emscripten/emscripten.h>
 
-#include <emscripten/emscripten.h>
 #ifdef __cplusplus
 extern "C" {
 #endif
