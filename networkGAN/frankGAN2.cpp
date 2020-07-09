@@ -1,6 +1,13 @@
 #include "GAN.h"
 
-int main()
+#include <emscripten/emscripten.h>
+
+#include <emscripten/emscripten.h>
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+int EMSCRIPTEN_KEEPALIVE main_frankGAN()
 {
     //sets random seed to the current time
     srand(time(NULL));
@@ -31,7 +38,7 @@ int main()
 
     //all info for how big of steps along gradient is taken, how big the subsets of training data is,
     //various variable that affect learning
-    int rounds = 20, subset = 10, correct = 0, attempted = 0;
+    int rounds = 1, subset = 10, correct = 0, attempted = 0;
     float discrate = 0.010, genrate = 1, chaosrate= 0.0;
 
     for (int i = 0; i < rounds; i++)
@@ -87,6 +94,13 @@ int main()
         //prints stuff from the user, how stuff looks and the rate (0-1) of how often the discriminator is correctly classifying data
         frankGAN.setInputLayer();
         frankGAN.evaluate();
+
+        //sending the output to JS
+        const char * str = frankGAN.getContentLayer();
+        EM_JS(void, say_hello, (const char* str), {
+            console.log('hello ' + UTF8ToString(str));
+            update_generated_sentence(UTF8ToString(str));
+        }
         cout << frankGAN.getContentLayer() << "    ("<< (float)correct / attempted << " discriminated)" <<endl;
     }
 
@@ -94,3 +108,7 @@ int main()
     //saves the training session.
     //frankGAN.toFile("GANpresentation.net");
 }
+
+#ifdef __cplusplus
+}
+#endif
