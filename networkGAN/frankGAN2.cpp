@@ -2,10 +2,6 @@
 
 #include <emscripten/emscripten.h>
 
-//send output via js function
-EM_JS(void, update_js_text, (const char* str), {
-    update_generated_sentence(UTF8ToString(str));
-});
 
 #ifdef __cplusplus
 extern "C" {
@@ -101,7 +97,7 @@ int EMSCRIPTEN_KEEPALIVE main_frankGAN()
 
         //sending the output to JS
         const char * str = frankGAN.getContentLayer().c_str();
-        update_js_text(str);
+        EM_ASM(update_generated_sentence(UTF8ToString($0)), str);
         double percent = (double)correct / attempted;
         EM_ASM({update_disc_data($0);}, percent);
         cout << frankGAN.getContentLayer() << "    ("<< (float)correct / attempted << " discriminated)" <<endl;
