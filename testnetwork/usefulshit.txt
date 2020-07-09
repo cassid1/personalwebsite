@@ -1,4 +1,13 @@
-  <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script type="text/javascript" src="connect4driver.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script> 
+		$(function(){
+		  $("#DivConnect4").load("connect4driver.html"); 
+		});
+		</script> 
+  
+  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <style>BODY {
     font-family: 'Open Sans', sans-serif;
     color: #0044AA;
