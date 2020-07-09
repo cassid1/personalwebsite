@@ -102,7 +102,7 @@ int EMSCRIPTEN_KEEPALIVE main_frankGAN()
         //sending the output to JS
         const char * str = frankGAN.getContentLayer().c_str();
         update_js_text(str);
-        double percent = (double)correct / attempted
+        double percent = (double)correct / attempted;
         EM_ASM({update_disc_data($0);}, percent);
         cout << frankGAN.getContentLayer() << "    ("<< (float)correct / attempted << " discriminated)" <<endl;
     }
