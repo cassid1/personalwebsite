@@ -5,7 +5,7 @@ int main(){
     srand(time(NULL));
     //bool compGoesFirst = false;
     // other dim {7*6*3,100,75,50, 7};
-    const vector<int> dimensions = {7*6,50,50,50, 7};
+    const vector<int> dimensions = {7*6,150,75,40, 7};
     GameBoard a;
     //a.playUserGame(compGoesFirst);
     int totalBlackWins = 0;

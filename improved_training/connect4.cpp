@@ -75,7 +75,7 @@ for(int row = 5; row>= 0; row--)
     }
 
     void GameBoard::updateNetworks(){
-        const vector<int> dimensions = {7*6,50,50,50, 7};
+        const vector<int> dimensions = {7*6,150,75,40, 7};
     if(blackWon){
     numBlackWins++;
   } else if (blackWon == false){
@@ -201,6 +201,7 @@ for(int row = 5; row>= 0; row--)
   //we have two temporary networks we are adding to each network, currently both these temps are the same "size" in that they change the network by the same ammount
   //we now apply the prinicple that a game lasts from 7 to 43 moves, and if a game lasts 42 moves the temp for the winner should be about twice the "size" while the temp
   //for the loser should then be about zero. The opposite is true for games that last 7 moves. We use 6 and 42, so no temp actually becomes 0, just close
+  /*
   float correctRange = (moveFloat-24.5)/18.5; //takes the move number, which belonged inside 6 to 43 and now comes up with a value that belongs inside -1 to 1
     if(blackWon){
       //correctRange can be negative or positive, so both temp and temp2 can be multiplied by anywhere from 0 to 2
@@ -212,6 +213,7 @@ for(int row = 5; row>= 0; row--)
       temp *= (1-correctRange);
       temp2 *= (1+correctRange);
     }
+    */
     /*
     if(numVerticalWins == 1){
       if(blackWon){

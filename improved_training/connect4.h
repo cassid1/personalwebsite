@@ -71,7 +71,7 @@ class GameBoard{
         initializeGameBoard();
 
         //loads the two networks
-        const vector<int> dimensions = {7*6,50,50,50, 7};
+        const vector<int> dimensions = {7*6,150,75,40, 7};
         Network learner("connect4black.net");
         Network learner2("connect4red.net");
         //Network learner(dimensions);
