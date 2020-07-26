@@ -11,6 +11,7 @@ using namespace std;
 
 #include <math.h>
 #include <stdlib.h>
+#include <omp.h>
 
 
 //dis(gen) gives random number

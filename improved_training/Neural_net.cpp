@@ -401,7 +401,7 @@ Network Network::gradient(vector<float> wo, float dropout)
     //this loop starts at the outermost layer and works in
     for (int i = v.size() - 1; i > 0; i--)
     {
-
+        #pragma omp parallel for
         //this loop will run for each node
         for (int j = 0; j < v[i]; j++)
         {
