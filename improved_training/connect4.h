@@ -30,6 +30,8 @@ class GameBoard{
     bool blacksMove;
 //was the game a draw?
     bool isDraw;
+// will black be playing as an algorithm, as apoosed to as a network?
+    bool blackAlgo;
 //used for backpropagation, these have the first dimension of 42 corresponding to as many of the 42 possible moves in a game as necessary,
 //stores the input for network, what the network ended up choosing, and what it could have chosen from
     int choiceStorage[42];
@@ -64,11 +66,13 @@ class GameBoard{
   void initializeGameBoard();
   void displayCurrentGameBoard();
   void makeMove(int c);
+  void undoMove(int c);
   int makeTurn();
   void updateNetworks();
 
   void playCPUGame(){
         initializeGameBoard();
+        blackAlgo = true;
 
         //loads the two networks
         const vector<int> dimensions = {7*6,150,75,40, 7};

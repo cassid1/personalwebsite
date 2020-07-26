@@ -203,9 +203,9 @@ for(int row = 5; row>= 0; row--)
   //we now apply the prinicple that a game lasts from 7 to 43 moves, and if a game lasts 42 moves the temp for the winner should be about twice the "size" while the temp
   //for the loser should then be about zero. The opposite is true for games that last 7 moves. We use 6 and 42, so no temp actually becomes 0, just close
   
-  float correctRange = (moveFloat-24.5)/18.5; //takes the move number, which belonged inside 6 to 43 and now comes up with a value that belongs inside -1 to 1
+  float correctRange = (moveFloat-24.5)/55.5; //takes the move number, which belonged inside 6 to 43 and now comes up with a value that belongs inside -0.33 to 0.33
     if(blackWon){
-      //correctRange can be negative or positive, so both temp and temp2 can be multiplied by anywhere from 0 to 2
+      //correctRange can be negative or positive, so both temp and temp2 can be multiplied by anywhere from 0.77 to 1.33
       temp *= (1+ correctRange);
       temp2 *= (1-correctRange); 
     }
@@ -239,7 +239,9 @@ for(int row = 5; row>= 0; row--)
     //adds the gradients for this game to their corresponding networks and then saves the networks to their files.
     *(learnerP)-= temp;
     *(learner2P)-= temp2;
+    if(!blackAlgo){
     learnerP->toFile("connect4black.net");
+    }
     learner2P->toFile("connect4red.net");
 }
 
@@ -265,11 +267,38 @@ for(int row = 5; row>= 0; row--)
 
     //either one network or the other evaluates to produce vector of 7 doubles, with each double being from 0 to 1 and with higher numbers reprresetning more preference
     if(blacksMove){
+      if(blackAlgo){
+        //choses move randomly, unless one or more columns will be a win for wither side, in that case it chooses all winning or losing columns
+        for(int i=0; i<7;i++){
+          outputs[i]=0.25;
+        }
+        for(int i=0; i<7;i++){
+          if (availableSelections[i]){
+            makeMove(i);
+            if(isGameOver){
+              if(rnum()< 0.4){
+                outputs[i]=0.9;
+              }
+            }
+            undoMove(i);
+            blacksMove =false;
+            makeMove(i);
+            if(isGameOver){
+              if(rnum() < 0.7){
+                outputs[i]=0.9;
+              }
+            }
+            undoMove(i);
+            blacksMove=true;
+          }
+        }
+      } else{
         learnerP->setInputLayer(inputs);
         learnerP->evaluate();
         for(int i=0; i<7; i++){
             outputs [i] = learnerP->getOutput(i);
         }
+      }
     } 
     else
     {
@@ -340,6 +369,22 @@ for(int row = 5; row>= 0; row--)
             blacksMove = true;
         }
   return choice;    
+}
+
+void GameBoard::undoMove(int c){
+  int height = 5;
+  while (isEmpty[c][height]){
+    height--;
+  }
+  availableSelections[c] = true;
+  connect4input[c][height]=0;
+  isRed[c][height] = false;
+  isBlack[c][height] = false;
+  isEmpty[c][height] = true;
+  open++;
+  isGameOver=false;
+  blackWon=false;
+  isDraw=false;
 }
 
   void GameBoard::makeMove(int c){
