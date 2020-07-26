@@ -39,14 +39,16 @@ void GameBoard::initializeGameBoard(){
       isDraw = false;
       blackWon = NULL;
       //all columns are avaiable to put into at the start of the game
-      for(int i = 0; i< 7; i++)
+      for(int i = 0; i< 7; i++){
 	availableSelections[i]=true;
+      }
   //all slots are empty and nore are black or red at the start of the game
         for(int i=0; i<7;i++){
             for(int j=0; j<6;j++){
                 isEmpty[i][j] = true;
                 isRed[i][j]=false;
                 isBlack[i][j]=false;
+                connect4input[i][j]=0;
             }
         }
 }
@@ -73,7 +75,7 @@ for(int row = 5; row>= 0; row--)
     }
 
     void GameBoard::updateNetworks(){
-        const vector<int> dimensions = {7*6*3,75,50,25, 7};
+        const vector<int> dimensions = {7*6,50,50,50, 7};
     if(blackWon){
     numBlackWins++;
   } else if (blackWon == false){
@@ -98,7 +100,6 @@ for(int row = 5; row>= 0; row--)
 //loops through all moves that took place during the last game, starting from move number 0
     for(int index = 0; index < moveNumber; index++){
       //cout<<index;
-      //cout<<": "<<choiceStorage[index]<<endl;
       //cout<<numDiagonalWins<<numHorizontalWins<<numVerticalWins<<endl;
 //This first if else statement decides if a move was taken by learner or learner2,
 //the if part corresponds to learner 1
@@ -197,19 +198,21 @@ for(int row = 5; row>= 0; row--)
 // they are winning in the first few moves it is usally due to their opponent making an error and thus they should not get this easy victory too far ingrained into them.
 //If they lose a long game it is more likely that they were at least doing something right at the begining, so they should not make too drastic of changes as they just need little tweaks
 
-
-//the first goal is accomplished by the 0.01 and either 1 or 3 and the second goal is accomplished by the part with 43 and 2
-    
-    /*
+  //we have two temporary networks we are adding to each network, currently both these temps are the same "size" in that they change the network by the same ammount
+  //we now apply the prinicple that a game lasts from 7 to 43 moves, and if a game lasts 42 moves the temp for the winner should be about twice the "size" while the temp
+  //for the loser should then be about zero. The opposite is true for games that last 7 moves. We use 6 and 42, so no temp actually becomes 0, just close
+  float correctRange = (moveFloat-24.5)/18.5; //takes the move number, which belonged inside 6 to 43 and now comes up with a value that belongs inside -1 to 1
     if(blackWon){
-      temp *= (.01*(1*((2*(moveFloat))/43)));
-      temp2 *= (.01*(3*(2*((43- (moveFloat)))/43))); 
+      //correctRange can be negative or positive, so both temp and temp2 can be multiplied by anywhere from 0 to 2
+      temp *= (1+ correctRange);
+      temp2 *= (1-correctRange); 
     }
     if(blackWon == false){
-      temp *= (.01*(3*(2*(43 - (moveFloat))/43)));
-      temp2 *= (.01*(1*(2*((moveFloat)/43))));
+      //only difference here is that the other color won
+      temp *= (1-correctRange);
+      temp2 *= (1+correctRange);
     }
-    
+    /*
     if(numVerticalWins == 1){
       if(blackWon){
 	temp *= 0.5;
@@ -246,15 +249,16 @@ for(int row = 5; row>= 0; row--)
         //black and the other as red, but both will "see" the exact smae thing, in theory each network would learn to see a given value of 1 in isRed and isBlack as exact opposites
         for(int i = 0; i < 7; i++){
             for(int j = 0; j<6; j++){
-            inputs.push_back(isRed[i][j]);
-            inputs.push_back(isBlack[i][j]);
-            inputs.push_back(isEmpty[i][j]);
+            //inputs.push_back(isRed[i][j]);
+            //inputs.push_back(isBlack[i][j]);
+            //inputs.push_back(isEmpty[i][j]);
+            inputs.push_back((float)connect4input[i][j]);
             }
         }
 
     //for use later in backpropagating--stores what the neural network sees on a turn for a turn in an array with index of that turn number
     inputStorage [moveNumber] = inputs;
-    //cout<<"storing a bunch of inputs in number: "<<moveNumber;
+    //cout<<"storing inputs in "<<moveNumber<<endl;
 
     //either one network or the other evaluates to produce vector of 7 doubles, with each double being from 0 to 1 and with higher numbers reprresetning more preference
     if(blacksMove){
@@ -276,7 +280,7 @@ for(int row = 5; row>= 0; row--)
   for(int i = 0; i<7; i++){
     availableStorage[moveNumber][i] = availableSelections[i];
   }
-
+  //cout<<"stored avalable in"<<moveNumber<<endl;
     //given the output vector from the neural network, find the index value of the choice that has the highest output value, provided that choice is of a column that is not filled up
     //choice is goint to represent a column number, so a value from 0 to 6
     int choice = -1;
@@ -321,6 +325,7 @@ for(int row = 5; row>= 0; row--)
 
     //stores each of the moves of the game(in terms of column number) in an array with index being the move number
     choiceStorage[moveNumber] = choice;
+    //cout<<"storing choinces in "<<moveNumber<<endl;
     //actually puts the move into the board and updates the board
     makeMove(choice);
     //switches blacksMove from true to false or visa versa
@@ -345,11 +350,14 @@ for(int row = 5; row>= 0; row--)
   if(height == 5)
     availableSelections[c] = false;
     //puts either a red or black piece at the correct slot
-  if(blacksMove)
+  if(blacksMove){
     isBlack[c][height] = true;
-  else
+    connect4input[c][height]=1;
+  }
+  else{
     isRed[c][height] = true;
-
+    connect4input[c][height]=-1;
+  }
     //sets the correct slot to FALSE for isEmpty
   isEmpty[c][height] = false;
   //decreases the number of open spaces, since a piece was put in the board

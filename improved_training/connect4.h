@@ -15,6 +15,7 @@ class GameBoard{
     bool isEmpty[7][6];
     bool isRed[7][6];
     bool isBlack[7][6];
+    int connect4input[7][6];
 //keep track of which of the 7 columns are available (true) and which of the 7 are full (false)
     bool availableSelections[7];
 //number of open spaces
@@ -70,7 +71,7 @@ class GameBoard{
         initializeGameBoard();
 
         //loads the two networks
-        const vector<int> dimensions = {7*6*3,75,50,25, 7};
+        const vector<int> dimensions = {7*6,50,50,50, 7};
         Network learner("connect4black.net");
         Network learner2("connect4red.net");
         //Network learner(dimensions);
