@@ -73,7 +73,7 @@ for(int row = 5; row>= 0; row--)
     }
 
     void GameBoard::updateNetworks(){
-        const vector<int> dimensions = {7*6*3,75,40, 7};
+        const vector<int> dimensions = {7*6*3,75,50,25, 7};
     if(blackWon){
     numBlackWins++;
   } else if (blackWon == false){
@@ -141,7 +141,7 @@ for(int row = 5; row>= 0; row--)
               power = power *2;
             }
             float multiplier = 1/(float)power;
-            temp += ((learnerP->gradient(wanted))*= 2/moveFloat);
+            temp += ((learnerP->gradient(wanted))*= multiplier);
             //totalCost+= learnerP->cost(wanted);
 
         }
@@ -185,7 +185,7 @@ for(int row = 5; row>= 0; row--)
               power = power *2;
             }
             float multiplier = 1/(float)power;
-            temp2 += ((learner2P->gradient(wanted))*= 2/moveFloat);
+            temp2 += ((learner2P->gradient(wanted))*= multiplier);
             //totalCost+= learner2P->cost(wanted);
 
     }
