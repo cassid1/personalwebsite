@@ -264,8 +264,8 @@ for(int row = 5; row>= 0; row--)
             //inputs.push_back(isRed[i][j]);
             //inputs.push_back(isBlack[i][j]);
             //inputs.push_back(isEmpty[i][j]);
-            inputs.push_back(0);
-            //inputs.push_back(connect4input[i][j]);
+            //inputs.push_back(0);
+            inputs.push_back(connect4input[i][j]);
             }
             //cout<<endl;
         }
