@@ -75,7 +75,7 @@ for(int row = 5; row>= 0; row--)
     }
 
     void GameBoard::updateNetworks(){
-        const vector<int> dimensions = {7*6,50, 7};
+        const vector<int> dimensions = {7*6,100,50, 7};
     if(blackWon){
     numBlackWins++;
   } else if (blackWon == false){
@@ -262,6 +262,7 @@ for(int row = 5; row>= 0; row--)
             //inputs.push_back(isRed[i][j]);
             //inputs.push_back(isBlack[i][j]);
             //inputs.push_back(isEmpty[i][j]);
+            //inputs.push_back(0);
             //inputs.push_back(connect4input[i][j]);
             }
             //cout<<endl;
@@ -566,9 +567,9 @@ void GameBoard::getNewInputs(int i){
             continue;
           }
           if(i+(incrementI)<7 && i+(incrementI)>=0 && height+(incrementJ)<6 && height+(incrementJ)>=0 && tmp[i+(incrementI)][height+(incrementJ)]){
-            twos ++;
+            //twos ++;
             if (i+(incrementI*2)<7 && i+(incrementI*2)>=0 && height+(incrementJ*2)<6 && height+(incrementJ*2)>=0 && tmp[i+(incrementI*2)][height+(incrementJ*2)]){
-              threes++;
+              //threes++;
               if(i+(incrementI*3)<7 && i+(incrementI*3)>=0 && height+(incrementJ*3)<6 && height+(incrementJ*3)>=0 && tmp[i+(incrementI*3)][height+(incrementJ*3)]){
                 fours++;
               }
