@@ -15,7 +15,8 @@ class GameBoard{
     bool isEmpty[7][6];
     bool isRed[7][6];
     bool isBlack[7][6];
-    int connect4input[7][6];
+    float connect4input[7][6];
+    int newInputs[6];
 //keep track of which of the 7 columns are available (true) and which of the 7 are full (false)
     bool availableSelections[7];
 //number of open spaces
@@ -68,11 +69,13 @@ class GameBoard{
   void makeMove(int c);
   void undoMove(int c);
   int makeTurn();
+  void getNewInputs(int i);
+
   void updateNetworks();
 
   void playCPUGame(){
         initializeGameBoard();
-        blackAlgo = true;
+        blackAlgo = false;
 
         //loads the two networks
         const vector<int> dimensions = {7*6,150,75,40, 7};

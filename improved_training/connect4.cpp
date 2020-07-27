@@ -253,12 +253,18 @@ for(int row = 5; row>= 0; row--)
         //these values will alays be in the same order, and will not vary based on which turn it is, so one neural network will learn to play as 
         //black and the other as red, but both will "see" the exact smae thing, in theory each network would learn to see a given value of 1 in isRed and isBlack as exact opposites
         for(int i = 0; i < 7; i++){
+          getNewInputs(i);
+          for(int k=0;k<6;k++){
+            inputs.push_back((float)newInputs[k]);
+            //cout<<(float)newInputs[k]<<" ";
+          }
             for(int j = 0; j<6; j++){
             //inputs.push_back(isRed[i][j]);
             //inputs.push_back(isBlack[i][j]);
             //inputs.push_back(isEmpty[i][j]);
-            inputs.push_back((float)connect4input[i][j]);
+            //inputs.push_back(connect4input[i][j]);
             }
+            //cout<<endl;
         }
 
     //for use later in backpropagating--stores what the neural network sees on a turn for a turn in an array with index of that turn number
@@ -528,4 +534,51 @@ void GameBoard::undoMove(int c){
     isDraw = true;
   }  
 
+}
+
+void GameBoard::getNewInputs(int i){
+  for(int i=0;i<6;i++){
+    newInputs[i]=0;
+  }
+  if(availableSelections[i]){
+    int height = 5;
+    while (isEmpty[i][height-1]&& height>= 1){
+      height--;
+    }
+    for(int color=0; color <2; color++){
+      bool tmp [7][6];
+      for(int i =0; i<7 ;i++){
+        for(int j = 0; j<6;j++){
+          if(color == 0){
+            tmp[i][j] = isBlack[i][j];
+          }
+          else{
+            tmp[i][j] = isRed[i][j];
+          }
+        }
+      }
+      int twos = 0;
+      int threes = 0;
+      int fours = 0; 
+      for(int incrementI = -1; incrementI <2; incrementI++){
+        for(int incrementJ= -1; incrementJ <2; incrementJ++){
+          if(incrementI ==0 && incrementJ == 0){
+            continue;
+          }
+          if(i+(incrementI)<7 && i+(incrementI)>=0 && height+(incrementJ)<6 && height+(incrementJ)>=0 && tmp[i+(incrementI)][height+(incrementJ)]){
+            twos ++;
+            if (i+(incrementI*2)<7 && i+(incrementI*2)>=0 && height+(incrementJ*2)<6 && height+(incrementJ*2)>=0 && tmp[i+(incrementI*2)][height+(incrementJ*2)]){
+              threes++;
+              if(i+(incrementI*3)<7 && i+(incrementI*3)>=0 && height+(incrementJ*3)<6 && height+(incrementJ*3)>=0 && tmp[i+(incrementI*3)][height+(incrementJ*3)]){
+                fours++;
+              }
+            }
+          }
+        }
+      }
+      newInputs[3*color] = twos;
+      newInputs[1+(3*color)] = threes;
+      newInputs[2+(3*color)] = fours;
+    }
+  }
 }
