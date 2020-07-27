@@ -15,7 +15,7 @@ int main(){
     int totalHorizWins = 0;
     int totalChoices = 0;
     int totalMoves = 0;
-    for(int i=0; i<10; i++){
+    for(int i=0; i<200; i++){
         a.playCPUGame();
 
         totalBlackWins += a.getBlackWins();
