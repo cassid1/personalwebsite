@@ -188,8 +188,8 @@ for(int row = 5; row>= 0; row--)
               power = power *2;
             }
             float multiplier = 1/(float)power;
-            temp2 += ((learner2P->gradient(wanted))*= multiplier);
-            //temp2 += ((learner2P->gradient(wanted))*= 2/moveFloat);
+            //temp2 += ((learner2P->gradient(wanted))*= multiplier);
+            temp2 += ((learner2P->gradient(wanted))*= 2/moveFloat);
             //totalCost+= learner2P->cost(wanted);
 
     }
