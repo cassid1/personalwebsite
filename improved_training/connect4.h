@@ -90,7 +90,7 @@ class GameBoard{
         makeTurn();
         moveNumber++;
         }
-	    displayCurrentGameBoard();
+	    //displayCurrentGameBoard();
         updateNetworks();
     }
 
