@@ -283,7 +283,7 @@ for(int row = 5; row>= 0; row--)
           if (availableSelections[i]){
             makeMove(i);
             if(isGameOver){
-              if(rnum()< 0.4){
+              if(rnum()< 0.8){
                 outputs[i]=0.9;
               }
             }
@@ -291,7 +291,7 @@ for(int row = 5; row>= 0; row--)
             blacksMove =false;
             makeMove(i);
             if(isGameOver){
-              if(rnum() < 0.7){
+              if(rnum() < 0.8){
                 outputs[i]=0.9;
               }
             }
@@ -352,9 +352,9 @@ for(int row = 5; row>= 0; row--)
 
     } 
     
-    //for(int i=0; i<7;i++)
-      //cout<<outputs[i]<<" ";
-    //cout<<"\n";
+    for(int i=0; i<7;i++)
+      cout<<outputs[i]<<" ";
+    cout<<"\n";
     
     //randomly chooses one of the elements of choices (the vestor with equal values) and sets that equal to choice
     int c = (int)(rnum()*(pos));

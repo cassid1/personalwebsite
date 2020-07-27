@@ -75,7 +75,7 @@ class GameBoard{
 
   void playCPUGame(){
         initializeGameBoard();
-        blackAlgo = false;
+        blackAlgo = true;
 
         //loads the two networks
         const vector<int> dimensions = {7*6,100,50, 7};
@@ -90,7 +90,7 @@ class GameBoard{
         makeTurn();
         moveNumber++;
         }
-	    //displayCurrentGameBoard();
+	    displayCurrentGameBoard();
         updateNetworks();
     }
 
