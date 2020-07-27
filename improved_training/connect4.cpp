@@ -143,7 +143,8 @@ for(int row = 5; row>= 0; row--)
             }
             float multiplier = 1/(float)power;
             
-            temp += ((learnerP->gradient(wanted))*= multiplier);
+            //temp += ((learnerP->gradient(wanted))*= multiplier);
+            temp += ((learnerP->gradient(wanted))*= 2/moveFloat);
             //totalCost+= learnerP->cost(wanted);
 
         }
@@ -188,6 +189,7 @@ for(int row = 5; row>= 0; row--)
             }
             float multiplier = 1/(float)power;
             temp2 += ((learner2P->gradient(wanted))*= multiplier);
+            //temp2 += ((learner2P->gradient(wanted))*= 2/moveFloat);
             //totalCost+= learner2P->cost(wanted);
 
     }
