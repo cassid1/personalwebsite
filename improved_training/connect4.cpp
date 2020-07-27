@@ -75,7 +75,7 @@ for(int row = 5; row>= 0; row--)
     }
 
     void GameBoard::updateNetworks(){
-        const vector<int> dimensions = {7*6,100,50, 7};
+        const vector<int> dimensions = {7*6*2,100,50, 7};
     if(blackWon){
     numBlackWins++;
   } else if (blackWon == false){
@@ -143,8 +143,8 @@ for(int row = 5; row>= 0; row--)
             }
             float multiplier = 1/(float)power;
             
-            //temp += ((learnerP->gradient(wanted))*= multiplier);
-            temp += ((learnerP->gradient(wanted))*= 2/moveFloat);
+            temp += ((learnerP->gradient(wanted))*= multiplier);
+            //temp += ((learnerP->gradient(wanted))*= 2/moveFloat);
             //totalCost+= learnerP->cost(wanted);
 
         }
@@ -188,8 +188,8 @@ for(int row = 5; row>= 0; row--)
               power = power *2;
             }
             float multiplier = 1/(float)power;
-            //temp2 += ((learner2P->gradient(wanted))*= multiplier);
-            temp2 += ((learner2P->gradient(wanted))*= 2/moveFloat);
+            temp2 += ((learner2P->gradient(wanted))*= multiplier);
+            //temp2 += ((learner2P->gradient(wanted))*= 2/moveFloat);
             //totalCost+= learner2P->cost(wanted);
 
     }
@@ -264,7 +264,7 @@ for(int row = 5; row>= 0; row--)
             //inputs.push_back(isRed[i][j]);
             //inputs.push_back(isBlack[i][j]);
             //inputs.push_back(isEmpty[i][j]);
-            //inputs.push_back(0);
+            inputs.push_back(0);
             //inputs.push_back(connect4input[i][j]);
             }
             //cout<<endl;
@@ -569,9 +569,9 @@ void GameBoard::getNewInputs(int i){
             continue;
           }
           if(i+(incrementI)<7 && i+(incrementI)>=0 && height+(incrementJ)<6 && height+(incrementJ)>=0 && tmp[i+(incrementI)][height+(incrementJ)]){
-            twos ++;
+            //twos ++;
             if (i+(incrementI*2)<7 && i+(incrementI*2)>=0 && height+(incrementJ*2)<6 && height+(incrementJ*2)>=0 && tmp[i+(incrementI*2)][height+(incrementJ*2)]){
-              threes++;
+              //threes++;
               if(i+(incrementI*3)<7 && i+(incrementI*3)>=0 && height+(incrementJ*3)<6 && height+(incrementJ*3)>=0 && tmp[i+(incrementI*3)][height+(incrementJ*3)]){
                 fours++;
               }
