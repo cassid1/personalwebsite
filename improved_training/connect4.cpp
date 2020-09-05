@@ -256,9 +256,10 @@ for(int row = 5; row>= 0; row--)
         //black and the other as red, but both will "see" the exact smae thing, in theory each network would learn to see a given value of 1 in isRed and isBlack as exact opposites
         for(int i = 0; i < 7; i++){
           getNewInputs(i);
+          cout<<" "<<i<<": ";
           for(int k=0;k<6;k++){
             inputs.push_back((float)newInputs[k]);
-            //cout<<(float)newInputs[k]<<" ";
+            cout<<(float)newInputs[k];
           }
             for(int j = 0; j<6; j++){
             //inputs.push_back(isRed[i][j]);
@@ -285,7 +286,7 @@ for(int row = 5; row>= 0; row--)
           if (availableSelections[i]){
             makeMove(i);
             if(isGameOver){
-              if(rnum()< 0.8){
+              if(rnum()< 2){
                 outputs[i]=0.9;
               }
             }
@@ -293,7 +294,7 @@ for(int row = 5; row>= 0; row--)
             blacksMove =false;
             makeMove(i);
             if(isGameOver){
-              if(rnum() < 0.8){
+              if(rnum() < 2){
                 outputs[i]=0.9;
               }
             }
@@ -563,18 +564,56 @@ void GameBoard::getNewInputs(int i){
       int twos = 0;
       int threes = 0;
       int fours = 0; 
+      int axis[4] = {1,1,1,1}; //[0]diagonal from top left to  bottom right [1] diagonal from bottom left to top right  [2] horizontal [3] vertical
       for(int incrementI = -1; incrementI <2; incrementI++){
         for(int incrementJ= -1; incrementJ <2; incrementJ++){
           if(incrementI ==0 && incrementJ == 0){
             continue;
           }
           if(i+(incrementI)<7 && i+(incrementI)>=0 && height+(incrementJ)<6 && height+(incrementJ)>=0 && tmp[i+(incrementI)][height+(incrementJ)]){
-            //twos ++;
+            if(abs(incrementI+incrementJ) == 2){
+              axis[0]++;
+            }else if(abs(incrementI+incrementJ) == 0){
+              axis[1]++;
+            } else if(abs(incrementI) > abs(incrementJ)){
+              axis[2]++;
+            }else{
+              axis[3]++;
+            }
             if (i+(incrementI*2)<7 && i+(incrementI*2)>=0 && height+(incrementJ*2)<6 && height+(incrementJ*2)>=0 && tmp[i+(incrementI*2)][height+(incrementJ*2)]){
-              //threes++;
-              if(i+(incrementI*3)<7 && i+(incrementI*3)>=0 && height+(incrementJ*3)<6 && height+(incrementJ*3)>=0 && tmp[i+(incrementI*3)][height+(incrementJ*3)]){
-                fours++;
+              if(abs(incrementI+incrementJ) == 2){
+                axis[0]++;
+              }else if(abs(incrementI+incrementJ) == 0){
+                axis[1]++;
+              } else if(abs(incrementI) > abs(incrementJ)){
+                axis[2]++;
+              }else{
+                axis[3]++;
               }
+              if(i+(incrementI*3)<7 && i+(incrementI*3)>=0 && height+(incrementJ*3)<6 && height+(incrementJ*3)>=0 && tmp[i+(incrementI*3)][height+(incrementJ*3)]){
+                if(abs(incrementI+incrementJ) == 2){
+                  axis[0]++;
+                }else if(abs(incrementI+incrementJ) == 0){
+                  axis[1]++;
+                } else if(abs(incrementI) > abs(incrementJ)){
+                  axis[2]++;
+                }else{
+                  axis[3]++;
+                }
+              }
+            }
+          }
+        }
+      }
+      cout<<" ";
+      for(int a=0; a <4; a++){
+        if(axis[a]>= 2){
+          //twos++;
+          if(axis[a]>=3){
+            //threes++;
+            if(axis[a]>=4){
+              fours=1;
+              cout<<"*"<<a;
             }
           }
         }
