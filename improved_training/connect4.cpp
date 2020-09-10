@@ -541,8 +541,8 @@ void GameBoard::undoMove(int c){
 }
 
 void GameBoard::getNewInputs(int i){
-  for(int i=0;i<6;i++){
-    newInputs[i]=0;
+  for(int a=0;a<6;a++){
+    newInputs[a]=0;
   }
   if(availableSelections[i]){
     int height = 5;
@@ -551,17 +551,17 @@ void GameBoard::getNewInputs(int i){
     }
     for(int color=0; color <2; color++){
       bool tmp [7][6];
-      for(int i =0; i<7 ;i++){
-        for(int j = 0; j<6;j++){
+      for(int a =0; a<7 ;a++){
+        for(int b = 0; b<6;b++){
           if(color == 0){
-            tmp[i][j] = isBlack[i][j];
+            tmp[a][b] = isBlack[a][b];
           }
           else{
-            tmp[i][j] = isRed[i][j];
+            tmp[a][b] = isRed[a][b];
           }
         }
       }
-      int twos = 0;
+      int upperfours = 0;
       int threes = 0;
       int fours = 0; 
       int axis[4] = {1,1,1,1}; //[0]diagonal from top left to  bottom right [1] diagonal from bottom left to top right  [2] horizontal [3] vertical
@@ -605,22 +605,86 @@ void GameBoard::getNewInputs(int i){
           }
         }
       }
-      cout<<" ";
+      //cout<<"column "<<i<<" color "<<color<<" a0: "<<axis[0]<<" a1: "<<axis[1]<<" a2: "<<axis[2]<<" a3: "<<axis[3]<<endl;
       for(int a=0; a <4; a++){
         if(axis[a]>= 2){
           //twos++;
           if(axis[a]>=3){
-            //threes++;
+            threes++;
             if(axis[a]>=4){
               fours=1;
-              cout<<"*"<<a;
+              //cout<<"*"<<a;
             }
           }
         }
       }
-      newInputs[3*color] = twos;
+      /*
+      if(height< 5){
+        height++;
+        for(int a=0; a<4;a++){
+          axis[a]=1;
+        }
+        for(int incrementI = -1; incrementI <2; incrementI++){
+          for(int incrementJ= -1; incrementJ <2; incrementJ++){
+            if(incrementI ==0 && incrementJ == 0){
+              continue;
+            }
+            if(i+(incrementI)<7 && i+(incrementI)>=0 && height+(incrementJ)<6 && height+(incrementJ)>=0 && tmp[i+(incrementI)][height+(incrementJ)]){
+              if(abs(incrementI+incrementJ) == 2){
+                axis[0]++;
+              }else if(abs(incrementI+incrementJ) == 0){
+                axis[1]++;
+              } else if(abs(incrementI) > abs(incrementJ)){
+                axis[2]++;
+              }else{
+                axis[3]++;
+              }
+              if (i+(incrementI*2)<7 && i+(incrementI*2)>=0 && height+(incrementJ*2)<6 && height+(incrementJ*2)>=0 && tmp[i+(incrementI*2)][height+(incrementJ*2)]){
+                if(abs(incrementI+incrementJ) == 2){
+                  axis[0]++;
+                }else if(abs(incrementI+incrementJ) == 0){
+                  axis[1]++;
+                } else if(abs(incrementI) > abs(incrementJ)){
+                  axis[2]++;
+                }else{
+                  axis[3]++;
+                }
+                if(i+(incrementI*3)<7 && i+(incrementI*3)>=0 && height+(incrementJ*3)<6 && height+(incrementJ*3)>=0 && tmp[i+(incrementI*3)][height+(incrementJ*3)]){
+                  if(abs(incrementI+incrementJ) == 2){
+                    axis[0]++;
+                  }else if(abs(incrementI+incrementJ) == 0){
+                    axis[1]++;
+                  } else if(abs(incrementI) > abs(incrementJ)){
+                    axis[2]++;
+                  }else{
+                    axis[3]++;
+                  }
+                }
+              }
+            }
+          }
+        }
+        for(int a=0; a <4; a++){
+          if(axis[a]>= 2){
+            //twos++;
+            if(axis[a]>=3){
+              //threes++;
+              if(axis[a]>=4){
+                //upperfours=1;
+                //cout<<"*"<<a;
+              }
+            }
+          }
+        }
+
+      }
+      */
+      newInputs[3*color] = upperfours;
+      //cout<<"newinputs"<<3*color<<" upperfours"<<color<<"\n";
       newInputs[1+(3*color)] = threes;
+      //cout<<"newinputs"<<1+(3*color)<<" threes"<<color<<"\n";
       newInputs[2+(3*color)] = fours;
+      //cout<<"newinputs"<<2+(3*color)<<" fours"<<color<<"\n";
     }
   }
 }
